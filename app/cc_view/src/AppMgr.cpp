@@ -122,6 +122,7 @@ bool AppMgr::loadPlugins(
     auto infos = getPluginInfos(pluginIidsList);
 
     bool result = true;
+    m_msgMgr.clear();
     QStringList toolbarElems;
     for (auto& i : infos) {
         auto* plugin = m_pluginMgr.loadPlugin(*i);
@@ -134,8 +135,6 @@ bool AppMgr::loadPlugins(
 
         std::cout << "Loaded: " << i->getIid().toStdString() << std::endl;
         plugin->aboutToApply();
-        auto obj = plugin->createObject();
-        static_cast<void>(obj);
 
         // TODO: manage the created objects
 
@@ -143,6 +142,34 @@ bool AppMgr::loadPlugins(
         if (!toolbarElem.isEmpty()) {
             toolbarElems.append(toolbarElem);
         }
+
+        auto obj = plugin->createObject();
+        auto objType = obj->getType();
+
+        if (objType == cc_plugin::PluginObject::Type::Socket) {
+            auto socketObj = std::static_pointer_cast<cc_tools::cc_plugin::Socket>(obj);
+            assert(socketObj);
+            m_msgMgr.setSocket(std::move(socketObj));
+            continue;
+        }
+
+        if (objType == cc_plugin::PluginObject::Type::Filter) {
+            auto filterObj = std::static_pointer_cast<cc_tools::cc_plugin::Filter>(obj);
+            assert(filterObj);
+            m_msgMgr.addFilter(std::move(filterObj));
+            continue;
+        }     
+
+        if (objType == cc_plugin::PluginObject::Type::Protocol) {
+            auto protocolObj = std::static_pointer_cast<cc_tools::cc_plugin::Protocol>(obj);
+            assert(protocolObj);
+            m_msgMgr.setProtocol(std::move(protocolObj));
+            continue;
+        }
+
+        assert(!"Unknown object type");
+        result = false;
+        break;
     }
 
     if (result) {

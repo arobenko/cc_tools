@@ -34,6 +34,21 @@ DemoProtocol::DemoProtocol()
 
 DemoProtocol::~DemoProtocol() noexcept = default;
 
+DemoProtocol::MessagesList DemoProtocol::readImpl(const DataInfo& dataInfo, bool final)
+{
+    static_cast<void>(dataInfo);
+    static_cast<void>(final);
+    assert(!"NYI");
+    return MessagesList();
+}
+
+DataInfoPtr DemoProtocol::writeImpl(Message& msg)
+{
+    static_cast<void>(msg);
+    assert(!"NYI");
+    return DataInfoPtr();
+}
+
 } // namespace protocol
 
 } // namespace cc_plugin

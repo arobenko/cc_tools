@@ -1,6 +1,8 @@
 set (name "cc_app")
 set (src
     src/ConfigMgr.cpp
+    src/MsgMgr.cpp
+    src/MsgMgrImpl.cpp
     src/PluginMgr.cpp
     src/PluginMgrImpl.cpp
 )

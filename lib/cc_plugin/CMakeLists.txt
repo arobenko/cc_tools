@@ -1,6 +1,8 @@
 set (name "cc_plugin")
 set (src
     src/DataInfo.cpp
+    src/Filter.cpp
+    src/Message.cpp
     src/Plugin.cpp
     src/PluginIntegration.cpp
     src/PluginIntegrationImpl.cpp

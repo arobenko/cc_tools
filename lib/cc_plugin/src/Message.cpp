@@ -15,7 +15,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "cc_tools/cc_plugin/Protocol.h"
+#include "cc_tools/cc_plugin/Message.h"
+
+#include <cassert>
+#include <type_traits>
 
 namespace cc_tools
 {
@@ -23,28 +26,32 @@ namespace cc_tools
 namespace cc_plugin
 {
 
-Protocol::Protocol(QObject* p) : 
+Message::Message(QObject* p) : 
     Base(p)
 {
 }
 
-Protocol::~Protocol() noexcept = default;
+Message::~Message() noexcept = default;
 
-Protocol::MessagesList Protocol::read(const DataInfo& dataInfo, bool final)
+const char* Message::propName(PropType value)
 {
-    return readImpl(dataInfo, final);
-}
+    static const char* Map[] = {
+        /* Type */ "cc.type",
+        /* SeqNum */ "cc.seq_num",
+        /* Timestamp */ "cc.timestamp",
+    };
 
-DataInfoPtr Protocol::write(Message& msg)
-{
-    return writeImpl(msg);
-}
+    static const std::size_t MapSize = std::extent<decltype(Map)>::value;
+    static_assert(MapSize == static_cast<unsigned>(PropType::NumOfValues), "Invalid Map");
 
-Protocol::Type Protocol::getTypeImpl() const
-{
-    return Type::Protocol;
-}
+    auto idx = static_cast<unsigned>(value);
+    if (MapSize <= idx) {
+        assert(!"Should_not_happen");
+        return nullptr;
+    }
 
+    return Map[idx];
+}
 
 }  // namespace cc_plugin
 

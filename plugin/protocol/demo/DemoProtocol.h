@@ -42,6 +42,10 @@ public:
     DemoProtocol();
     ~DemoProtocol() noexcept;
 
+protected:
+    virtual MessagesList readImpl(const DataInfo& dataInfo, bool final) override;    
+    virtual DataInfoPtr writeImpl(Message& msg) override;    
+
 private:
 };
 

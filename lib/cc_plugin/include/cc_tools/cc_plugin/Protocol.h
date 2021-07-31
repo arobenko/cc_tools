@@ -22,12 +22,14 @@
 #include <cstddef>
 #include <vector>
 #include <functional>
+#include <list>
 
 #include <QtCore/QString>
 
 #include "cc_tools/cc_plugin/Api.h"
 #include "cc_tools/cc_plugin/DataInfo.h"
 #include "cc_tools/cc_plugin/PluginObject.h"
+#include "cc_tools/cc_plugin/Message.h"
 
 namespace cc_tools
 {
@@ -42,6 +44,8 @@ class CC_PLUGIN_API Protocol : public PluginObject
 {
     using Base = PluginObject;
 public:
+    /// @brief List of messages
+    using MessagesList = std::list<MessagePtr>;
 
     /// @brief Constructor
     explicit Protocol(QObject* p = nullptr);
@@ -49,8 +53,30 @@ public:
     /// @brief Destructor
     virtual ~Protocol() noexcept;
 
+    /// @brief Read the received data input.
+    /// @details Invokes virtual readImpl().
+    /// @param[in] dataInfo Received data information
+    /// @param[in] final Final input indication, if @b true no more data is expected
+    /// @return List of created messages
+    MessagesList read(const DataInfo& dataInfo, bool final = false);    
+
+    /// @brief Serialse message.
+    /// @details Invokes writeImpl().
+    /// @param[in] msg Reference to message object, passed by non-const reference
+    ///     to allow update of the message properties.
+    /// @return Serialised data.
+    DataInfoPtr write(Message& msg);    
+
 protected:
     virtual Type getTypeImpl() const override final;
+
+    /// @brief Polymorphic read functionality.
+    /// @details Invoked by read().
+    virtual MessagesList readImpl(const DataInfo& dataInfo, bool final) = 0;    
+
+    /// @brief Polymorphic write functionality.
+    /// @details invoked by write().
+    virtual DataInfoPtr writeImpl(Message& msg) = 0;    
     
 private:
 };

@@ -3,6 +3,7 @@
 #include <QtCore/QObject>
 
 #include "cc_tools/cc_app/PluginMgr.h"
+#include "cc_tools/cc_app/MsgMgr.h"
 
 namespace cc_tools
 {
@@ -49,12 +50,14 @@ private slots:
     void selectedFilterPluginsIidsChanged(const QStringList& values);
 
 private:
+    using MsgMgr = cc_tools::cc_app::MsgMgr;
     AppMgr();
 
     ListOfPluginInfos getPluginInfos(const QStringList& pluginIids);
     const QString& getPluginConfigQml(const QString& iid);
 
     PluginMgr m_pluginMgr;
+    MsgMgr m_msgMgr;
 };
 
 } // namespace cc_view
