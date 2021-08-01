@@ -18,13 +18,9 @@
 
 #pragma once
 
-#include <list>
 
-#include <QtCore/QTimer>
-
-#include "cc_tools/cc_plugin/protocol/ProtocolImpl.h"
-
-#include "DemoFrame.h"
+#include "demo/frame/Frame.h"
+#include "DemoMessage.h"
 
 namespace cc_tools
 {
@@ -35,26 +31,7 @@ namespace cc_plugin
 namespace protocol
 {
 
-class DemoProtocol : public cc_tools::cc_plugin::protocol::ProtocolImpl<DemoFrame>
-{
-    Q_OBJECT
-
-public:
-    DemoProtocol();
-    ~DemoProtocol() noexcept;
-
-protected:
-    virtual MessagesList readImpl(const DataInfo& dataInfo, bool final) override;    
-    virtual DataInfoPtr writeImpl(Message& msg) override;    
-
-private:
-};
-
-inline
-cc_tools::cc_plugin::ProtocolPtr makeDemoProtocol()
-{
-    return cc_tools::cc_plugin::ProtocolPtr(new DemoProtocol());
-}
+using DemoFrame = demo::frame::Frame<DemoMessage>;
 
 } // namespace protocol
 

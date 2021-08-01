@@ -40,6 +40,11 @@ DataInfoPtr Protocol::write(Message& msg)
     return writeImpl(msg);
 }
 
+Protocol::MessageInfosList Protocol::getSupportedMessages() const
+{
+    return getSupportedMessagesImpl();
+}
+
 Protocol::Type Protocol::getTypeImpl() const
 {
     return Type::Protocol;

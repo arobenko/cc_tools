@@ -47,6 +47,15 @@ public:
     /// @brief List of messages
     using MessagesList = std::list<MessagePtr>;
 
+    struct MessageInfo
+    {
+        QString m_name;
+        long long m_id = 0;
+        unsigned m_idx = 0;
+    };
+
+    using MessageInfosList = std::vector<MessageInfo>;
+
     /// @brief Constructor
     explicit Protocol(QObject* p = nullptr);
 
@@ -67,6 +76,8 @@ public:
     /// @return Serialised data.
     DataInfoPtr write(Message& msg);    
 
+    MessageInfosList getSupportedMessages() const;
+
 protected:
     virtual Type getTypeImpl() const override final;
 
@@ -77,6 +88,8 @@ protected:
     /// @brief Polymorphic write functionality.
     /// @details invoked by write().
     virtual DataInfoPtr writeImpl(Message& msg) = 0;    
+
+    virtual MessageInfosList getSupportedMessagesImpl() const = 0;
     
 private:
 };

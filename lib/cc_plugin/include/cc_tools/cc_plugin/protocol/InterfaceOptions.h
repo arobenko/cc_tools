@@ -18,13 +18,9 @@
 
 #pragma once
 
-#include <list>
+#include <tuple>
 
-#include <QtCore/QTimer>
-
-#include "cc_tools/cc_plugin/protocol/ProtocolImpl.h"
-
-#include "DemoFrame.h"
+#include "comms/options.h"
 
 namespace cc_tools
 {
@@ -35,31 +31,21 @@ namespace cc_plugin
 namespace protocol
 {
 
-class DemoProtocol : public cc_tools::cc_plugin::protocol::ProtocolImpl<DemoFrame>
-{
-    Q_OBJECT
-
-public:
-    DemoProtocol();
-    ~DemoProtocol() noexcept;
-
-protected:
-    virtual MessagesList readImpl(const DataInfo& dataInfo, bool final) override;    
-    virtual DataInfoPtr writeImpl(Message& msg) override;    
-
-private:
-};
-
-inline
-cc_tools::cc_plugin::ProtocolPtr makeDemoProtocol()
-{
-    return cc_tools::cc_plugin::ProtocolPtr(new DemoProtocol());
-}
+using InterfaceOptions = 
+    std::tuple<
+        comms::option::app::ReadIterator<const std::uint8_t*>,
+        comms::option::app::WriteIterator<std::uint8_t*>,
+        comms::option::app::IdInfoInterface,
+        comms::option::app::ValidCheckInterface,
+        comms::option::app::LengthInfoInterface,
+        comms::option::app::RefreshInterface,
+        comms::option::app::NameInterface
+        // TODO: handler
+    >;
 
 } // namespace protocol
 
 } // namespace cc_plugin
 
-}  // namespace cc_tools
-
+} // namespace cc_tools
 

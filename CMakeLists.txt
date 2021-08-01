@@ -30,7 +30,9 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 
 include(GNUInstallDirs)
 include(${PROJECT_SOURCE_DIR}/cmake/CommonFuncs.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/CC_Prefetch.cmake)
 set (CC_PLUGIN_INSTALL_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/cc_tools/plugin")
+set (CC_EXTERNALS_DIR ${PROJECT_SOURCE_DIR}/externals)
 
 cc_set_compile_flags()
 
