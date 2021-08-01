@@ -14,13 +14,16 @@ Dialog {
     height: Screen.desktopAvailableHeight * 0.8
 
     ListView {
+        id: listView
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.bottom:parent.bottom
 
-        model: ["Message1", "Message2", "Message3"]
+        model: CC_AvailableMessagesListModel {
+        }
+
         delegate: Text {
-            text: modelData
+            text: listView.model.getNameOf(index);
         }
     }
 

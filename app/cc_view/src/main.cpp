@@ -6,6 +6,8 @@
 #include "GuiState.h"
 #include "AppMgr.h"
 #include "PluginListModel.h"
+#include "AvailableMessagesListModel.h"
+
 
 namespace 
 {
@@ -47,6 +49,7 @@ void qmlRegisterTypes()
     qmlRegisterSingletonType<cc_tools::cc_view::AppMgr>("CC", 1, 0, "CC_AppMgr", &getAppMgr);
 
     qmlRegisterType<cc_tools::cc_view::PluginListModel>("CC", 1, 0, "CC_PluginListModel");
+    qmlRegisterType<cc_tools::cc_view::AvailableMessagesListModel>("CC", 1, 0, "CC_AvailableMessagesListModel");
 }
 
 } // namespace 
