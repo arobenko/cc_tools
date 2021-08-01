@@ -41,7 +41,8 @@ void GuiState::activateDialog(DialogType type, bool pushFront)
         /* DialogType_PluginsConfigSave */ "qrc:/qml/CC_PluginsConfigSaveDialog.qml",
         /* DialogType_PluginsConfigSaveFailed */ "qrc:/qml/CC_PluginsConfigSaveFailedDialog.qml",
         /* DialogType_PluginsConfigLoad */ "qrc:/qml/CC_PluginsConfigLoadDialog.qml",
-        /* DialogType_PluginsConfigSaveFailed */ "qrc:/qml/CC_PluginsConfigLoadFailedDialog.qml",
+        /* DialogType_PluginsConfigLoadFailed */ "qrc:/qml/CC_PluginsConfigLoadFailedDialog.qml",
+        /* DialogType_AddNewSendMessage */ "qrc:/qml/CC_AddNewSendMessageDialog.qml",
     };
     static const std::size_t MapSize = std::extent<decltype(Map)>::value;
     static_assert(MapSize == DialogType_NumOfValues, "Invalid map");

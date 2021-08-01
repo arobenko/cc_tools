@@ -12,7 +12,7 @@ CC_BackgroundRectangle {
         anchors.fill: parent
         anchors.margins: 5
 
-        CC_ExchangedMessagesToolbar {
+        CC_MessagesToSendToolbar {
             Layout.fillWidth: true
             Layout.minimumHeight: 40
         }

@@ -1,4 +1,4 @@
-find_package(Qt5 COMPONENTS Quick Widgets REQUIRED)
+find_package(Qt5 ${CC_MIN_QT_VERSION} COMPONENTS Quick Widgets REQUIRED)
 
 set (name "cc_view")
 set (src
