@@ -3,6 +3,7 @@ find_package(Qt5 ${CC_MIN_QT_VERSION} COMPONENTS Quick Widgets REQUIRED)
 set (name "cc_view")
 set (src
     src/AppMgr.cpp
+    src/AvailableMessagesListModel.cpp
     src/GuiState.cpp
     src/main.cpp
     src/PluginListModel.cpp

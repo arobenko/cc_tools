@@ -45,11 +45,30 @@ Protocol::MessageInfosList Protocol::getSupportedMessages() const
     return getSupportedMessagesImpl();
 }
 
+QString Protocol::getMessageInfoString(const MessageInfo& info) const
+{
+    return getMessageInfoStringImpl(info);
+}
+
+QString Protocol::getMessageIdString(const MessageInfo& info) const
+{
+    return getMessageIdStringImpl(info);
+}
+
 Protocol::Type Protocol::getTypeImpl() const
 {
     return Type::Protocol;
 }
 
+QString Protocol::getMessageInfoStringImpl(const MessageInfo& info) const
+{
+    return QString("(%1) %2").arg(getMessageIdString(info)).arg(info.m_name);
+}
+
+QString Protocol::getMessageIdStringImpl(const MessageInfo& info) const
+{
+    return QString::number(info.m_id);
+}
 
 }  // namespace cc_plugin
 

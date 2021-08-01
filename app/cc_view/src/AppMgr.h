@@ -15,6 +15,7 @@ class AppMgr : public QObject
 {
     Q_OBJECT
 public:
+    using MsgMgr = cc_tools::cc_app::MsgMgr;
     using PluginMgr = cc_tools::cc_app::PluginMgr;
     using ListOfPluginInfos = PluginMgr::ListOfPluginInfos;
 
@@ -23,6 +24,11 @@ public:
     PluginMgr& pluginMgr()
     {
         return m_pluginMgr;
+    }
+
+    MsgMgr& msgMgr()
+    {
+        return m_msgMgr;
     }
 
     Q_INVOKABLE bool requiresPluginsReloadConfirmation(
@@ -50,7 +56,6 @@ private slots:
     void selectedFilterPluginsIidsChanged(const QStringList& values);
 
 private:
-    using MsgMgr = cc_tools::cc_app::MsgMgr;
     AppMgr();
 
     ListOfPluginInfos getPluginInfos(const QStringList& pluginIids);

@@ -77,6 +77,8 @@ public:
     DataInfoPtr write(Message& msg);    
 
     MessageInfosList getSupportedMessages() const;
+    QString getMessageInfoString(const MessageInfo& info) const;
+    QString getMessageIdString(const MessageInfo& info) const;
 
 protected:
     virtual Type getTypeImpl() const override final;
@@ -90,6 +92,9 @@ protected:
     virtual DataInfoPtr writeImpl(Message& msg) = 0;    
 
     virtual MessageInfosList getSupportedMessagesImpl() const = 0;
+
+    virtual QString getMessageInfoStringImpl(const MessageInfo& info) const;
+    virtual QString getMessageIdStringImpl(const MessageInfo& info) const;
     
 private:
 };
