@@ -10,6 +10,9 @@ option (CC_BUILD_DEMO_PROTOCOL "Build demo protocol plugin" ON)
 
 # Extra input variables
 # CC_QT_DIR - Directory of Qt5 installation
+# CC_TAG - Forcing tag of the comms_champion project
+# CC_REPO - Forcing repository of the comms_champion project
+
 ############################################################
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
