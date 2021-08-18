@@ -22,6 +22,7 @@ ToolBar {
             id: addButton
             image.source: "qrc:/image/add.png"
             tooltip.text: qsTr("Add Message") + " (" + addMessageShortcut.nativeText + ")";
+            enabled: CC_GuiState.pluginsApplied
 
             onClicked: {
                 console.log("!!!NYI: Add new message");

@@ -26,6 +26,7 @@ class GuiState : public QObject
     Q_PROPERTY(QString selectedSocketPluginConfigQml READ getSelectedSocketPluginConfigQml WRITE setSelectedSocketPluginConfigQml NOTIFY sigSelectedSocketPluginConfigQmlChanged)
     Q_PROPERTY(QString selectedProtocolPluginConfigQml READ getSelectedProtocolPluginConfigQml WRITE setSelectedProtocolPluginConfigQml NOTIFY sigSelectedProtocolPluginConfigQmlChanged)
     Q_PROPERTY(QStringList selectedDilterPluginConfigQmls READ getSelectedFilterPluginConfigQmls WRITE setSelectedFilterPluginConfigQmls NOTIFY sigSelectedFilterPluginConfigQmlsChanged)
+    Q_PROPERTY(bool pluginsApplied READ getPluginsApplied WRITE setPluginsApplied NOTIFY sigPluginsAppliedChanged)
     
 public:
     enum DialogType 
@@ -59,6 +60,7 @@ public:
     CC_MEMBER(QString, SelectedSocketPluginConfigQml)
     CC_MEMBER(QString, SelectedProtocolPluginConfigQml)
     CC_MEMBER(QStringList, SelectedFilterPluginConfigQmls)
+    CC_MEMBER(bool, PluginsApplied, =false)
 
 public slots:
     Q_INVOKABLE void activateDialog(DialogType type, bool pushFront = false);
@@ -81,6 +83,7 @@ signals:
     void sigSelectedSocketPluginConfigQmlChanged(const QString& value);    
     void sigSelectedProtocolPluginConfigQmlChanged(const QString& value);    
     void sigSelectedFilterPluginConfigQmlsChanged(const QStringList& value);
+    void sigPluginsAppliedChanged(bool value);
 
 private:
     GuiState(); 

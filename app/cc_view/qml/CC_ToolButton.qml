@@ -10,6 +10,7 @@ ToolButton {
     Layout.alignment: Qt.AlignVCenter
     display: ToolButton.IconOnly
     hoverEnabled: tooltip.text !== ""
+    opacity: enabled ? 1.0 : 0.4
 
     property alias image: image
     property alias tooltip: tooltip
