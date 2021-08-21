@@ -7,10 +7,14 @@ Item {
     anchors.fill: parent
 
     property string text: ""
+    property string shortcutText: ""
     property bool show: true    
+
+    // Internal properties
+    property string suffixText: shortcutText == "" ? shortcutText : " (" + shortcutText + ')'
 
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: show && text !== ""
-    ToolTip.text: text
+    ToolTip.text: text + suffixText
 }

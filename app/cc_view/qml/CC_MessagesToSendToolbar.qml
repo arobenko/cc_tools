@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import CC 1.0
 
-import "qrc:/qml"
+import "qrc:/qml/basic"
 
 ToolBar {
     id: root
@@ -18,26 +18,17 @@ ToolBar {
         anchors.bottom: parent.bottom
         spacing: 6
 
-        CC_ToolButton {
+        CC_BasicToolButton {
             id: addButton
             image.source: "qrc:/image/add.png"
-            tooltip.text: qsTr("Add Message") + " (" + addMessageShortcut.nativeText + ")";
+            tooltip.text: qsTr("Add Message")
+            shortcut.sequence: "Ctrl+M"
             enabled: CC_GuiState.pluginsApplied
 
             onClicked: {
                 console.log("!!!NYI: Add new message");
                 CC_GuiState.activateDialog(CC_GuiState.DialogType_AddNewSendMessage);
             }            
-        }
-
-    }
-
-    Shortcut {
-        id: addMessageShortcut
-        sequence: "Ctrl+M"
-        enabled: true
-        onActivated: {
-            addButton.onClicked();
         }
     }
 }

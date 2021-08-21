@@ -5,6 +5,8 @@
         <file>image/folder.png</file>
         <file>image/plugin_select.png</file>
         <file>image/save_as.png</file>
+        <file>qml/basic/CC_BasicToolButton.qml</file>
+        <file>qml/basic/CC_BasicTooltip.qml</file>
         <file>qml/CC_AddNewSendMessageDialog.qml</file>
         <file>qml/CC_AvailablePluginsLists.qml</file>
         <file>qml/CC_BackgroundRectangle.qml</file>
@@ -25,8 +27,6 @@
         <file>qml/CC_PluginsSelectDialog.qml</file>
         <file>qml/CC_Toolbar.qml</file>
         <file>qml/CC_ToolbarBackground.qml</file>
-        <file>qml/CC_ToolButton.qml</file>
-        <file>qml/CC_Tooltip.qml</file>
         <file>qml/main.qml</file>
     </qresource>
 </RCC>

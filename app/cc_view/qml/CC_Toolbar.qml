@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import CC 1.0
 
-import "qrc:/qml"
+import "qrc:/qml/basic"
 
 ToolBar {
     id: root
@@ -18,9 +18,10 @@ ToolBar {
         anchors.bottom: parent.bottom
         spacing: 6
 
-        CC_ToolButton {
+        CC_BasicToolButton {
             image.source: "qrc:/image/plugin_select.png"
-            tooltip.text: qsTr("Select plugins") + " (" + pluginsDialogShortcut.nativeText + ")";
+            tooltip.text: qsTr("Select plugins")
+            shortcut.sequence: "Ctrl+P"
 
             onClicked: {
                 CC_GuiState.activateDialog(CC_GuiState.DialogType_PluginsSelection);
@@ -33,15 +34,6 @@ ToolBar {
                 source: modelData
                 active: source !== ""
             }
-        }
-    }
-
-    Shortcut {
-        id: pluginsDialogShortcut
-        sequence: "Ctrl+P"
-        enabled: true
-        onActivated: {
-            CC_GuiState.activateDialog(CC_GuiState.DialogType_PluginsSelection);
         }
     }
 }
