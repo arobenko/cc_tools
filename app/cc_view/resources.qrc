@@ -2,11 +2,15 @@
     <qresource prefix="/">
         <file>image/add.png</file>
         <file>image/app_icon.png</file>
+        <file>image/broom.png</file>
         <file>image/folder.png</file>
         <file>image/plugin_select.png</file>
         <file>image/save_as.png</file>
         <file>qml/basic/CC_BasicToolButton.qml</file>
         <file>qml/basic/CC_BasicTooltip.qml</file>
+        <file>qml/elem/CC_ElemSearchMessagesStringInput.qml</file>
+        <file>qml/elem/CC_ElemSearchStringInput.qml</file>
+        <file>qml/elem/CC_ElemStringInput.qml</file>
         <file>qml/CC_AddNewSendMessageDialog.qml</file>
         <file>qml/CC_AvailablePluginsLists.qml</file>
         <file>qml/CC_BackgroundRectangle.qml</file>

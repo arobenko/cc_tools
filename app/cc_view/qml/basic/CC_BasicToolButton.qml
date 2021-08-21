@@ -1,13 +1,11 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtQuick.Layouts 1.12
 
 import "qrc:/qml/basic"
 
 ToolButton {
     id: root
     icon.source: image.source
-    Layout.alignment: Qt.AlignVCenter
     display: ToolButton.IconOnly
     hoverEnabled: tooltip.text !== ""
     opacity: enabled ? 1.0 : 0.4
