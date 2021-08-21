@@ -28,7 +28,7 @@ Dialog {
         anchors.bottom:parent.bottom
 
         model: CC_AvailableMessagesListModel {
-            //search: searchInput.textField.text
+            search: searchInput.textField.text
         }
 
         delegate: Text {

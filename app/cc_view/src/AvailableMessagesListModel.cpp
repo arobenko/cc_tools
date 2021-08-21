@@ -62,6 +62,10 @@ AvailableMessagesListModel::~AvailableMessagesListModel() = default;
 
 QString AvailableMessagesListModel::getNameOf(int idx) const
 {
+    if (idx < 0) {
+        return QString();
+    }
+    
     if (m_availableInfos.size() <= static_cast<unsigned>(idx)) {
         assert(!"Should not happen");
         return QString();
@@ -150,7 +154,7 @@ void AvailableMessagesListModel::searchChanged(const QString& value)
         m_allInfos.begin(), m_allInfos.end(), std::back_inserter(m_availableInfos),
         [&value](auto& elem)
         {
-            return value.isEmpty() || (elem.m_name.contains(value));
+            return value.isEmpty() || (elem.m_name.contains(value, Qt::CaseInsensitive));
         }
     );
 
