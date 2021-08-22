@@ -18,7 +18,13 @@
 
 #pragma once
 
+#include <vector>
+
+#include "comms/util/Tuple.h"
+
 #include "cc_tools/cc_plugin/Message.h"
+
+#include "cc_tools/cc_plugin/protocol/details/FieldCreator.h"
 
 namespace cc_tools
 {
@@ -34,16 +40,51 @@ class MessageImpl : public cc_tools::cc_plugin::Message
 {
     using Base = cc_tools::cc_plugin::Message;
 public:    
+    MessageImpl()
+    {
+        updateFields();
+    }
+    ~MessageImpl() = default;
+    
+    TMsg& msg()
+    {
+        return m_msg;
+    }
 
 protected:
-    virtual const QString& nameImpl() const
+
+    virtual const QString& nameImpl() const override
     {
         static const QString Str(m_msg.doName());
         return Str;
     }
-    
+
 private:
+    using FieldsList = std::vector<FieldPtr>;
+    class FieldCreateHandler
+    {
+    public:
+        FieldCreateHandler(FieldsList& list) : m_list(list) {}
+
+        template <typename TField>
+        void operator()(TField& field)
+        {
+            m_list.push_back(details::FieldCreator::createField(field));
+        }
+
+    private:
+        FieldsList& m_list;
+    };
+
+    void updateFields()
+    {
+        m_fields.clear();
+        comms::util::tupleForEach(m_msg.fields(), FieldCreateHandler(m_fields));
+        assert(m_fields.size() == std::tuple_size<typename TMsg::AllFields>::value);
+    }
+
     TMsg m_msg;
+    std::vector<FieldPtr> m_fields;
 };
 
 } // namespace protocol

@@ -24,7 +24,6 @@
 #include <QtCore/QString>
 
 #include "cc_tools/cc_plugin/Api.h"
-#include "cc_tools/cc_plugin/Field.h"
 
 namespace cc_tools
 {
@@ -32,53 +31,47 @@ namespace cc_tools
 namespace cc_plugin
 {
 
-/// @brief Main polymorphic interface message objects.
-/// @details It is used to provide a common abstraction to message object.
-/// @headerfile cc_tools/cc_plugin/Message.h
-class CC_PLUGIN_API Message : public QObject
+class CC_PLUGIN_API Field : public QObject
 {
     using Base = QObject;
 public:
 
-    /// @brief Type of the message
-    enum class Type : unsigned
+    enum Type : unsigned
     {
-        Invalid, ///< Invalid type
-        Received, ///< Message has been received
-        Sent, ///< Message has been sent
-        NumOfValues ///< Number of available values
+        Type_Int,
+        Type_Enum,
+        Type_Set,
+        Type_Bitfield,
+        Type_Bundle,
+        Type_String,
+        Type_Data,
+        Type_List,
+        Type_Float,
+        Type_Optional,
+        Type_Variant,
+        Type_NumOfValues
     };
-
-    enum class PropType : unsigned
-    {
-        Type,      // Type above
-        SeqNum,    // unsigned long long
-        Timestamp, // unsigned long long
-        NumOfValues
-    };
-
-    using MessageIdType = long long;
 
     /// @brief Constructor
-    explicit Message(QObject* p = nullptr);
+    explicit Field(QObject* p = nullptr);
 
     /// @brief Destructor
-    virtual ~Message() noexcept;
-
-    static const char* propName(PropType value);
+    virtual ~Field() noexcept;
 
     const QString& name() const;
 
+    Type type() const;
+
 protected:
     virtual const QString& nameImpl() const = 0;    
+    virtual Type typeImpl() const = 0;
 };
 
-/// @brief Pointer to @ref Message object.
-using MessagePtr = std::shared_ptr<Message>;
+/// @brief Pointer to @ref Field object.
+using FieldPtr = std::shared_ptr<Field>;
 
 } // namespace cc_plugin
 
 }  // namespace cc_tools
 
-Q_DECLARE_METATYPE(cc_tools::cc_plugin::MessagePtr);
-Q_DECLARE_METATYPE(cc_tools::cc_plugin::Message::MessageIdType);
+Q_DECLARE_METATYPE(cc_tools::cc_plugin::FieldPtr);
