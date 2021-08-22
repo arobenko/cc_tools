@@ -36,7 +36,12 @@ class MessageImpl : public cc_tools::cc_plugin::Message
 public:    
 
 protected:
-
+    virtual const QString& nameImpl() const
+    {
+        static const QString Str(m_msg.doName());
+        return Str;
+    }
+    
 private:
     TMsg m_msg;
 };

@@ -8,6 +8,7 @@
 #include "PluginListModel.h"
 #include "AvailableMessagesListModel.h"
 #include "MessageCreator.h"
+#include "QmlMessage.h"
 
 
 namespace 
@@ -46,6 +47,7 @@ QObject *getAppMgr(QQmlEngine *engine, QJSEngine *scriptEngine)
 void metaTypesRegisterAll()
 {
     qRegisterMetaType<cc_tools::cc_plugin::Message::MessageIdType>("MessageIdType");
+    qRegisterMetaType<cc_tools::cc_plugin::MessagePtr>("MessagePtr");
 }
 
 void qmlRegisterTypes()
@@ -57,6 +59,7 @@ void qmlRegisterTypes()
     qmlRegisterType<cc_tools::cc_view::PluginListModel>("CC", 1, 0, "CC_PluginListModel");
     qmlRegisterType<cc_tools::cc_view::AvailableMessagesListModel>("CC", 1, 0, "CC_AvailableMessagesListModel");
     qmlRegisterType<cc_tools::cc_view::MessageCreator>("CC", 1, 0, "CC_MessageCreator");
+    qmlRegisterType<cc_tools::cc_view::QmlMessage>("CC", 1, 0, "CC_QmlMessage");
 }
 
 } // namespace 

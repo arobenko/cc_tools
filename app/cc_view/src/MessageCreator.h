@@ -5,10 +5,7 @@
 
 #include <QtCore/QObject>
 
-#include "cc_tools/cc_plugin/Protocol.h"
 #include "cc_tools/cc_plugin/Message.h"
-
-#include "common_defs.h"
 
 namespace cc_tools
 {

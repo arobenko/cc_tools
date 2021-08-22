@@ -21,6 +21,7 @@
 #include <memory>
 
 #include <QtCore/QObject>
+#include <QtCore/QString>
 
 #include "cc_tools/cc_plugin/Api.h"
 
@@ -64,6 +65,11 @@ public:
     virtual ~Message() noexcept;
 
     static const char* propName(PropType value);
+
+    const QString& name() const;
+
+protected:
+    virtual const QString& nameImpl() const = 0;    
 };
 
 /// @brief Pointer to @ref Message object.

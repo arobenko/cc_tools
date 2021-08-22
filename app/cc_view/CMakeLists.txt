@@ -8,6 +8,7 @@ set (src
     src/main.cpp
     src/MessageCreator.cpp
     src/PluginListModel.cpp
+    src/QmlMessage.cpp
     resources.qrc
 )
 

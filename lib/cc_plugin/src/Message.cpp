@@ -53,6 +53,11 @@ const char* Message::propName(PropType value)
     return Map[idx];
 }
 
+const QString& Message::name() const
+{
+    return nameImpl();
+}
+
 }  // namespace cc_plugin
 
 }  // namespace cc_tools
