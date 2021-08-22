@@ -6,6 +6,7 @@ set (src
     src/AvailableMessagesListModel.cpp
     src/GuiState.cpp
     src/main.cpp
+    src/MessageCreator.cpp
     src/PluginListModel.cpp
     resources.qrc
 )

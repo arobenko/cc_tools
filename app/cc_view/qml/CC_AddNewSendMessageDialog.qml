@@ -15,6 +15,10 @@ Dialog {
     height: Screen.desktopAvailableHeight * 0.8
     width: Screen.desktopAvailableWidth * 0.4
 
+    CC_MessageCreator {
+        id: creator
+    }
+
     CC_ElemSearchMessagesStringInput {
         id: searchInput
         anchors.top: parent.top
@@ -64,6 +68,7 @@ Dialog {
 
                     listView.currentIndex = index;
                     //root.pluginIid = listView.model.getIidOf(index);
+                    creator.createMessage(listView.model.getIdOf(index), listView.model.getIdxOf(index));
                 }
             }            
         }

@@ -7,6 +7,7 @@
 #include "AppMgr.h"
 #include "PluginListModel.h"
 #include "AvailableMessagesListModel.h"
+#include "MessageCreator.h"
 
 
 namespace 
@@ -42,6 +43,11 @@ QObject *getAppMgr(QQmlEngine *engine, QJSEngine *scriptEngine)
     return mgr;
 }
 
+void metaTypesRegisterAll()
+{
+    qRegisterMetaType<cc_tools::cc_plugin::Message::MessageIdType>("MessageIdType");
+}
+
 void qmlRegisterTypes()
 {
     qmlRegisterSingletonType<cc_tools::cc_plugin::PluginIntegration>("CC", 1, 0, "CC_PluginIntegration", &getPluginIntegration);
@@ -50,6 +56,7 @@ void qmlRegisterTypes()
 
     qmlRegisterType<cc_tools::cc_view::PluginListModel>("CC", 1, 0, "CC_PluginListModel");
     qmlRegisterType<cc_tools::cc_view::AvailableMessagesListModel>("CC", 1, 0, "CC_AvailableMessagesListModel");
+    qmlRegisterType<cc_tools::cc_view::MessageCreator>("CC", 1, 0, "CC_MessageCreator");
 }
 
 } // namespace 
@@ -62,6 +69,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/image/app_icon.png"));
 
+    metaTypesRegisterAll();
     qmlRegisterTypes();
 
     QQmlApplicationEngine engine;

@@ -55,6 +55,8 @@ public:
         NumOfValues
     };
 
+    using MessageIdType = long long;
+
     /// @brief Constructor
     explicit Message(QObject* p = nullptr);
 
@@ -71,3 +73,5 @@ using MessagePtr = std::shared_ptr<Message>;
 
 }  // namespace cc_tools
 
+Q_DECLARE_METATYPE(cc_tools::cc_plugin::MessagePtr);
+Q_DECLARE_METATYPE(cc_tools::cc_plugin::Message::MessageIdType);

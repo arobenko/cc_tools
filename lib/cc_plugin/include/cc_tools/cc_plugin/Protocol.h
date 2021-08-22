@@ -47,7 +47,7 @@ public:
     /// @brief List of messages
     using MessagesList = std::list<MessagePtr>;
 
-    using MessageIdType = long long;
+    using MessageIdType = Message::MessageIdType;
 
     struct MessageInfo
     {
