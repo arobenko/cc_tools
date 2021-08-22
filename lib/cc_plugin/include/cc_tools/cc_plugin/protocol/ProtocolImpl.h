@@ -19,8 +19,10 @@
 #pragma once
 
 #include "cc_tools/cc_plugin/Protocol.h"
+#include "cc_tools/cc_plugin/protocol/MessageImpl.h"
 
 #include "comms/util/Tuple.h"
+#include "comms/dispatch.h"
 
 namespace cc_tools
 {
@@ -47,6 +49,17 @@ protected:
         result.resize(std::tuple_size<AllMessages>::value);
         comms::util::tupleForEachType<AllMessages>(MessageInfosListFiller(result));
         return result;
+    }
+
+    virtual MessagePtr createMessageImpl(MessageIdType id, unsigned idx) override
+    {
+        MessageCreateHandler handler;
+        if (!comms::dispatchMsgTypeStaticBinSearch<AllMessages>(id, idx, handler)) {
+            assert(!"Should not happen");
+            return MessagePtr();
+        }
+
+        return handler.getMsgPtr();
     }
 
 private:
@@ -80,6 +93,24 @@ private:
     private: 
         MessageInfosList& m_list;  
         unsigned m_idx = 0;
+    };
+
+    class MessageCreateHandler
+    {
+    public:
+        MessagePtr getMsgPtr()
+        {
+            return std::move(m_msgPtr);
+        }
+
+        template <typename TMsgType>
+        void handle()
+        {
+            m_msgPtr.reset(new MessageImpl<TMsgType>);
+        }
+
+    private:
+        MessagePtr m_msgPtr;
     };
 };
 

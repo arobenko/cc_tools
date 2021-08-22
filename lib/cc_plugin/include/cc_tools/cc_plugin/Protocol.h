@@ -47,10 +47,12 @@ public:
     /// @brief List of messages
     using MessagesList = std::list<MessagePtr>;
 
+    using MessageIdType = long long;
+
     struct MessageInfo
     {
         QString m_name;
-        long long m_id = 0;
+        MessageIdType m_id = 0;
         unsigned m_idx = 0;
     };
 
@@ -80,6 +82,9 @@ public:
     QString getMessageInfoString(const MessageInfo& info) const;
     QString getMessageIdString(const MessageInfo& info) const;
 
+    MessagePtr createMessage(const MessageInfo& info);
+    MessagePtr createMessage(MessageIdType id, unsigned idx);
+
 protected:
     virtual Type getTypeImpl() const override final;
 
@@ -95,6 +100,7 @@ protected:
 
     virtual QString getMessageInfoStringImpl(const MessageInfo& info) const;
     virtual QString getMessageIdStringImpl(const MessageInfo& info) const;
+    virtual MessagePtr createMessageImpl(MessageIdType id, unsigned idx);
     
 private:
 };
