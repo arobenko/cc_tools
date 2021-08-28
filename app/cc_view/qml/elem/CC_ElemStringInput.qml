@@ -7,11 +7,19 @@ import "qrc:/qml/basic"
 RowLayout {
     id: root
 
+    property alias frontSpacer: frontSpacer
     property alias label: label
     property alias spacer: spacer
     property alias textField: textField
     property alias clearButton: clearButton
+    property alias backSpacer: backSpacer
     property alias textFocusShortcut: textFocusShortcut
+
+    Item {
+        id: frontSpacer
+        Layout.fillWidth: true
+        visible: false
+    }    
 
     Label {
         id: label
@@ -26,6 +34,7 @@ RowLayout {
     TextField {
         id: textField
     }   
+    
 
     CC_BasicToolButton {
         id: clearButton
@@ -38,6 +47,12 @@ RowLayout {
             textField.forceActiveFocus();
         }
     }
+
+    Item {
+        id: backSpacer
+        Layout.fillWidth: true
+        visible: false
+    }     
 
     Shortcut {
         id: textFocusShortcut
