@@ -107,6 +107,7 @@ private:
         void handle()
         {
             m_msgPtr.reset(new MessageImpl<TMsgType>);
+            m_msgPtr->init();
         }
 
     private:

@@ -13,6 +13,8 @@ set (src
 )
 
 set (hdr
+    include/cc_tools/cc_plugin/Field.h
+    include/cc_tools/cc_plugin/Message.h
     include/cc_tools/cc_plugin/Plugin.h
     include/cc_tools/cc_plugin/PluginIntegration.h
 )

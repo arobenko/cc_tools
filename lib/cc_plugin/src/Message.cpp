@@ -33,6 +33,21 @@ Message::Message(QObject* p) :
 
 Message::~Message() noexcept = default;
 
+void Message::init()
+{
+    auto& allFields = fields();
+    for (auto& f : allFields) {
+        connect(
+            f.get(), &Field::sigFieldUpdated,
+            this,
+            [this]() 
+            {
+                refresh();
+                emit sigMessageUpdated();
+            });
+    }
+}
+
 const char* Message::propName(PropType value)
 {
     static const char* Map[] = {
@@ -71,6 +86,16 @@ QString Message::idStr() const
 QString Message::infoStr() const
 {
     return QString("(%1) - %2").arg(idStr()).arg(name());
+}
+
+Message::FieldsList& Message::fields()
+{
+    return fieldsImpl();
+}
+
+bool Message::refresh()
+{
+    return refreshImpl();
 }
 
 QString Message::idStrImpl() const

@@ -19,6 +19,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
@@ -37,6 +38,7 @@ namespace cc_plugin
 /// @headerfile cc_tools/cc_plugin/Message.h
 class CC_PLUGIN_API Message : public QObject
 {
+    Q_OBJECT
     using Base = QObject;
 public:
 
@@ -59,11 +61,15 @@ public:
 
     using MessageIdType = long long;
 
+    using FieldsList = std::vector<FieldPtr>;
+
     /// @brief Constructor
     explicit Message(QObject* p = nullptr);
 
     /// @brief Destructor
     virtual ~Message() noexcept;
+
+    void init();
 
     static const char* propName(PropType value);
 
@@ -75,10 +81,19 @@ public:
 
     QString infoStr() const;
 
+    FieldsList& fields();
+
+    bool refresh();
+
+signals:
+    void sigMessageUpdated();    
+
 protected:
     virtual const QString& nameImpl() const = 0; 
     virtual MessageIdType idImpl() const = 0;
     virtual QString idStrImpl() const;
+    virtual FieldsList& fieldsImpl() = 0;
+    virtual bool refreshImpl() = 0;
 };
 
 /// @brief Pointer to @ref Message object.

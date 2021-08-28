@@ -33,6 +33,7 @@ namespace cc_plugin
 
 class CC_PLUGIN_API Field : public QObject
 {
+    Q_OBJECT
     using Base = QObject;
 public:
 
@@ -62,9 +63,14 @@ public:
 
     Type type() const;
 
+signals:
+    void sigFieldUpdated();    
+
 protected:
     virtual const QString& nameImpl() const = 0;    
     virtual Type typeImpl() const = 0;
+
+    void reportFieldUpdated();
 };
 
 /// @brief Pointer to @ref Field object.

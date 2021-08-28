@@ -41,6 +41,7 @@ class MessageImpl : public cc_tools::cc_plugin::Message
     using Base = cc_tools::cc_plugin::Message;
 public:    
     using MessageIdType = Base::MessageIdType;
+    using FieldsList = Base::FieldsList;
 
     MessageImpl()
     {
@@ -66,8 +67,17 @@ protected:
         return static_cast<MessageIdType>(m_msg.doGetId());
     }
 
+    virtual FieldsList& fieldsImpl() override
+    {
+        return m_fields;
+    }
+
+    virtual bool refreshImpl() override
+    {
+        return m_msg.doRefresh();
+    }
+
 private:
-    using FieldsList = std::vector<FieldPtr>;
     class FieldCreateHandler
     {
     public:
@@ -91,7 +101,7 @@ private:
     }
 
     TMsg m_msg;
-    std::vector<FieldPtr> m_fields;
+    FieldsList m_fields;
 };
 
 } // namespace protocol

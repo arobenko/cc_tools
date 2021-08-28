@@ -43,6 +43,11 @@ Field::Type Field::type() const
     return typeImpl();
 }
 
+void Field::reportFieldUpdated()
+{
+    emit sigFieldUpdated();
+}
+
 }  // namespace cc_plugin
 
 }  // namespace cc_tools
