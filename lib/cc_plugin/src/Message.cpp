@@ -58,6 +58,26 @@ const QString& Message::name() const
     return nameImpl();
 }
 
+Message::MessageIdType Message::id() const
+{
+    return idImpl();
+}
+
+QString Message::idStr() const
+{
+    return idStrImpl();
+}
+
+QString Message::infoStr() const
+{
+    return QString("(%1) - %2").arg(idStr()).arg(name());
+}
+
+QString Message::idStrImpl() const
+{
+    return QString::number(id());
+}
+
 }  // namespace cc_plugin
 
 }  // namespace cc_tools

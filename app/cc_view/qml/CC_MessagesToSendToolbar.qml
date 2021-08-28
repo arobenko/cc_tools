@@ -26,7 +26,6 @@ ToolBar {
             enabled: CC_GuiState.pluginsApplied
 
             onClicked: {
-                console.log("!!!NYI: Add new message");
                 CC_GuiState.activateDialog(CC_GuiState.DialogType_AddNewSendMessage);
             }            
         }

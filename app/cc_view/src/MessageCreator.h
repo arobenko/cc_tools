@@ -27,7 +27,7 @@ public:
     explicit MessageCreator(QObject* p = nullptr);
     ~MessageCreator();
 
-    Q_INVOKABLE void createMessage(MessageIdType id, unsigned idx);
+    Q_INVOKABLE MessagePtr createMessage(MessageIdType id, unsigned idx);
 
     Q_INVOKABLE MessagePtr getMsg();
 

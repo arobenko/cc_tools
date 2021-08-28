@@ -23,6 +23,8 @@ ListView {
         radius: 5
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
 
         Text {
             text: root.model.getNameOf(index);

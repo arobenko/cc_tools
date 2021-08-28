@@ -40,6 +40,8 @@ class MessageImpl : public cc_tools::cc_plugin::Message
 {
     using Base = cc_tools::cc_plugin::Message;
 public:    
+    using MessageIdType = Base::MessageIdType;
+
     MessageImpl()
     {
         updateFields();
@@ -57,6 +59,11 @@ protected:
     {
         static const QString Str(m_msg.doName());
         return Str;
+    }
+
+    virtual MessageIdType idImpl() const override
+    {
+        return static_cast<MessageIdType>(m_msg.doGetId());
     }
 
 private:

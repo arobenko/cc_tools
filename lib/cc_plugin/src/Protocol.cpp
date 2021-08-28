@@ -74,7 +74,7 @@ Protocol::Type Protocol::getTypeImpl() const
 
 QString Protocol::getMessageInfoStringImpl(const MessageInfo& info) const
 {
-    return QString("(%1) %2").arg(getMessageIdString(info)).arg(info.m_name);
+    return QString("(%1) - %2").arg(getMessageIdString(info)).arg(info.m_name);
 }
 
 QString Protocol::getMessageIdStringImpl(const MessageInfo& info) const

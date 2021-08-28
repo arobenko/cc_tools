@@ -20,7 +20,7 @@ MessageCreator::~MessageCreator()
     setCreatedMessage(nullptr);
 }
 
-void MessageCreator::createMessage(MessageIdType id, unsigned idx)
+MessageCreator::MessagePtr MessageCreator::createMessage(MessageIdType id, unsigned idx)
 {
     auto& list = m_createdMessages[id];
     if (list.size() <= idx) {
@@ -35,6 +35,7 @@ void MessageCreator::createMessage(MessageIdType id, unsigned idx)
 
     assert(msg);
     setCreatedMessage(msg);
+    return msg;
 }
 
 MessageCreator::MessagePtr MessageCreator::getMsg()

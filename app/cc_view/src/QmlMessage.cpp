@@ -11,36 +11,34 @@ namespace cc_view
 QmlMessage::QmlMessage(QObject* p) :
     Base(p)
 {
+    connect(
+        this, &QmlMessage::sigMsgChanged,
+        this, &QmlMessage::msgUpdated);
 }
 
 QmlMessage::~QmlMessage() = default;
 
 
-QmlMessage::MessagePtr QmlMessage::getMsg()
+void QmlMessage::msgUpdated(MessagePtr value)
 {
-    return m_msg;
-}
-
-void QmlMessage::setMsg(MessagePtr msg)
-{
-    if (!msg) {
-        reset();
+    if (!value) {
+        resetStatus();
         return;
     }
 
-    if (msg == m_msg) {
-        return;
-    }
-
-    setName(msg->name());
-
-    m_msg = std::move(msg);
-    emit sigMsgChanged(m_msg);
+    updateStatus();
 }
 
-void QmlMessage::reset()
+void QmlMessage::resetStatus()
 {
     setName(QString());
+    setInfoString(QString());
+}
+
+void QmlMessage::updateStatus()
+{
+    setName(m_Msg->name());
+    setInfoString(m_Msg->infoStr());
 }
     
 } // namespace cc_view

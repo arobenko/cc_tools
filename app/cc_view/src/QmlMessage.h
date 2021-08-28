@@ -22,6 +22,7 @@ class QmlMessage : public QObject
 
     Q_PROPERTY(MessagePtr msg READ getMsg WRITE setMsg NOTIFY sigMsgChanged)
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY sigNameChanged)
+    Q_PROPERTY(QString infoString READ getInfoString WRITE setInfoString NOTIFY sigInfoStringChanged)
 
 public:
     using MessagePtr = cc_tools::cc_plugin::MessagePtr;
@@ -29,19 +30,25 @@ public:
     explicit QmlMessage(QObject* p = nullptr);
     ~QmlMessage();
 
-    MessagePtr getMsg();
-    void setMsg(MessagePtr value);
+    // Config members
+    CC_MEMBER(MessagePtr, Msg)
 
+    // Status members
     CC_MEMBER(QString, Name)
+    CC_MEMBER(QString, InfoString)
 
 signals:
     void sigMsgChanged(MessagePtr value);
     void sigNameChanged(const QString& value);
+    void sigInfoStringChanged(const QString& value);
+
+private slots:
+    void msgUpdated(MessagePtr value);    
 
 private:
-    void reset();
-    
-    MessagePtr m_msg;
+    void resetStatus();
+    void updateStatus();
+
 };
 
 } // namespace cc_view

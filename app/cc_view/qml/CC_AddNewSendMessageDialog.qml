@@ -20,6 +20,10 @@ Dialog {
         id: creator
     }
 
+    CC_QmlMessage {
+        id: qmlMessage
+    }
+
     ColumnLayout {
         id: leftSide
         anchors.top: parent.top
@@ -42,6 +46,10 @@ Dialog {
                 id: listView
                 searchInput: searchInput.textField.text
                 anchors.fill: parent
+
+                onSigMessageSelected: {
+                    qmlMessage.msg = creator.createMessage(id, idx);
+                }
             }
         }
     }
@@ -52,11 +60,16 @@ Dialog {
         anchors.bottom: parent.bottom
         anchors.left: splitter.right
         anchors.right: parent.right
+
+        CC_ElemMessageDetails {
+            anchors.fill: parent
+            qmlMessage: qmlMessage
+        }
     }
 
     CC_BasicHorSplitter {
         id: splitter
-        x: parent.width / 2
+        x: parent.width / 3
         dragMinX: leftSide.implicitWidth
     }
 

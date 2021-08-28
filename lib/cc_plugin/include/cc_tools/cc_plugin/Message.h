@@ -69,8 +69,16 @@ public:
 
     const QString& name() const;
 
+    MessageIdType id() const;
+
+    QString idStr() const;
+
+    QString infoStr() const;
+
 protected:
-    virtual const QString& nameImpl() const = 0;    
+    virtual const QString& nameImpl() const = 0; 
+    virtual MessageIdType idImpl() const = 0;
+    virtual QString idStrImpl() const;
 };
 
 /// @brief Pointer to @ref Message object.
