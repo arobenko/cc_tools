@@ -3,12 +3,15 @@
 #include <QQmlApplicationEngine>
 
 #include "cc_tools/cc_plugin/PluginIntegration.h"
+
+#include "model/AvailableMessagesListModel.h"
+
+#include "qml/QmlMessage.h"
+
 #include "GuiState.h"
 #include "AppMgr.h"
 #include "PluginListModel.h"
-#include "AvailableMessagesListModel.h"
 #include "MessageCreator.h"
-#include "QmlMessage.h"
 
 
 namespace 
