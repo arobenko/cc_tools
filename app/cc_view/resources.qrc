@@ -8,6 +8,7 @@
         <file>image/save_as.png</file>
         <file>qml/basic/CC_BasicToolButton.qml</file>
         <file>qml/basic/CC_BasicTooltip.qml</file>
+        <file>qml/elem/CC_ElemAvailableMessageTypesList.qml</file>
         <file>qml/elem/CC_ElemSearchMessagesStringInput.qml</file>
         <file>qml/elem/CC_ElemSearchStringInput.qml</file>
         <file>qml/elem/CC_ElemStringInput.qml</file>

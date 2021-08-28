@@ -29,7 +29,7 @@ public:
 
     Q_INVOKABLE void createMessage(MessageIdType id, unsigned idx);
 
-    MessagePtr getMsg();
+    Q_INVOKABLE MessagePtr getMsg();
 
 signals:
     void sigMsgChanged(MessagePtr value);
