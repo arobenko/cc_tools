@@ -27,6 +27,7 @@
 #include "comms/field/Optional.h"
 #include "comms/field/ArrayList.h"
 #include "comms/field/String.h"
+#include "comms/field/Variant.h"
 
 #include "comms/util/type_traits.h"
 
@@ -42,6 +43,7 @@
 #include "DataField.h"
 #include "ListField.h"
 #include "StringField.h"
+#include "VariantField.h"
 
 namespace cc_tools
 {
@@ -127,8 +129,14 @@ private:
     template <typename TField, typename TFieldBase, typename... TOptions>
     static FieldPtr createInternal(comms::field::String<TFieldBase, TOptions...>& field)
     {
-        return createOptionalField(static_cast<TField&>(field));
-    }      
+        return createStringField(static_cast<TField&>(field));
+    }  
+
+    template <typename TField, typename TFieldBase, typename T, typename... TOptions>
+    static FieldPtr createInternal(comms::field::Variant<TFieldBase, T, TOptions...>& field)
+    {
+        return createVariantField(static_cast<TField&>(field));
+    }    
 
     template <typename TField, typename TFieldBase, typename TElement, typename... TOptions>
     static FieldPtr createListInternal(comms::field::ArrayList<TFieldBase, TElement, TOptions...>& field, DataTag)
@@ -140,7 +148,8 @@ private:
     static FieldPtr createListInternal(comms::field::ArrayList<TFieldBase, TElement, TOptions...>& field, ListTag)
     {
         return createListField(static_cast<TField&>(field));
-    }                 
+    } 
+                    
 };
 
 } // namespace details
