@@ -5,6 +5,7 @@
 #include "cc_tools/cc_plugin/PluginIntegration.h"
 
 #include "model/AvailableMessagesListModel.h"
+#include "model/MessageFieldsListModel.h"
 
 #include "qml/QmlMessage.h"
 
@@ -61,6 +62,7 @@ void qmlRegisterTypes()
 
     qmlRegisterType<cc_tools::cc_view::PluginListModel>("CC", 1, 0, "CC_PluginListModel");
     qmlRegisterType<cc_tools::cc_view::AvailableMessagesListModel>("CC", 1, 0, "CC_AvailableMessagesListModel");
+    qmlRegisterType<cc_tools::cc_view::MessageFieldsListModel>("CC", 1, 0, "CC_MessageFieldsListModel");
     qmlRegisterType<cc_tools::cc_view::MessageCreator>("CC", 1, 0, "CC_MessageCreator");
     qmlRegisterType<cc_tools::cc_view::QmlMessage>("CC", 1, 0, "CC_QmlMessage");
 }

@@ -3,11 +3,15 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import CC 1.0
 
+import "qrc:/qml/elem"
+
 ColumnLayout {
     id: root
-    spacing: 5
 
     property CC_QmlMessage qmlMessage
+    property bool readOnly: false
+
+    spacing: 5
 
     Label {
         id: name
@@ -27,7 +31,13 @@ ColumnLayout {
         Layout.rightMargin: 5
     }
 
-    Item {
+    CC_ElemMessageFieldsList {
+        qmlMessage: root.qmlMessage
+        readOnly: root.readOnly
         Layout.fillHeight: true
     }
+
+    // Item {
+    //     Layout.fillHeight: true
+    // }
 }

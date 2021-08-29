@@ -9,8 +9,20 @@
         <file>qml/basic/CC_BasicHorSplitter.qml</file>
         <file>qml/basic/CC_BasicToolButton.qml</file>
         <file>qml/basic/CC_BasicTooltip.qml</file>
+        <file>qml/elem/field/CC_ElemFieldBitfield.qml</file>
+        <file>qml/elem/field/CC_ElemFieldBundle.qml</file>
+        <file>qml/elem/field/CC_ElemFieldData.qml</file>
+        <file>qml/elem/field/CC_ElemFieldEnum.qml</file>
+        <file>qml/elem/field/CC_ElemFieldFloat.qml</file>
+        <file>qml/elem/field/CC_ElemFieldInt.qml</file>
+        <file>qml/elem/field/CC_ElemFieldList.qml</file>
+        <file>qml/elem/field/CC_ElemFieldOptional.qml</file>
+        <file>qml/elem/field/CC_ElemFieldSet.qml</file>
+        <file>qml/elem/field/CC_ElemFieldString.qml</file>
+        <file>qml/elem/field/CC_ElemFieldVariant.qml</file>
         <file>qml/elem/CC_ElemAvailableMessageTypesList.qml</file>
         <file>qml/elem/CC_ElemMessageDetails.qml</file>
+        <file>qml/elem/CC_ElemMessageFieldsList.qml</file>
         <file>qml/elem/CC_ElemSearchMessagesStringInput.qml</file>
         <file>qml/elem/CC_ElemSearchStringInput.qml</file>
         <file>qml/elem/CC_ElemStringInput.qml</file>
