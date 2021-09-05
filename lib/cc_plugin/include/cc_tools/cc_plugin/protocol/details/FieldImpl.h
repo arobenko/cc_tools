@@ -32,10 +32,10 @@ namespace protocol
 namespace details
 {
 
-template <typename TField>
-class FieldImpl : public cc_tools::cc_plugin::Field
+template <typename TField, typename TBase = cc_tools::cc_plugin::Field>
+class FieldImpl : public TBase
 {
-    using Base = cc_tools::cc_plugin::Field;
+    using Base = TBase;
 public:    
     explicit FieldImpl(TField& field) : 
         m_field(field)

@@ -34,7 +34,7 @@
 #include "cc_tools/cc_plugin/Field.h"
 
 #include "IntField.h"
-#include "EnumField.h"
+#include "EnumFieldImpl.h"
 #include "SetField.h"
 #include "FloatField.h"
 #include "BitfieldField.h"

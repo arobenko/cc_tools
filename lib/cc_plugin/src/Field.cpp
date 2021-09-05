@@ -48,6 +48,25 @@ void Field::reportFieldUpdated()
     emit sigFieldUpdated();
 }
 
+// ------------------------------------------
+
+EnumField::EnumField(QObject* p) : 
+    Base(p)
+{
+}
+
+EnumField::~EnumField() noexcept = default;
+
+const EnumField::ValueNamesMap& EnumField::getValueNamesMap() const
+{
+    return getValueNamesMapImpl();
+}
+
+EnumField::Type EnumField::typeImpl() const
+{
+    return Base::Type_Enum;
+}
+
 }  // namespace cc_plugin
 
 }  // namespace cc_tools

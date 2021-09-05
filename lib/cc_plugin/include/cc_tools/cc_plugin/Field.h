@@ -19,6 +19,7 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
@@ -73,8 +74,32 @@ protected:
     void reportFieldUpdated();
 };
 
-/// @brief Pointer to @ref Field object.
 using FieldPtr = std::shared_ptr<Field>;
+
+class CC_PLUGIN_API EnumField : public Field
+{
+    Q_OBJECT
+    using Base = Field;
+public:
+    using ValueType = long long;
+    using ValueNameInfo = std::pair<ValueType, QString>;
+    using ValueNamesMap = std::vector<ValueNameInfo>;
+
+
+    /// @brief Constructor
+    explicit EnumField(QObject* p = nullptr);
+
+    /// @brief Destructor
+    virtual ~EnumField() noexcept;
+
+    const ValueNamesMap& getValueNamesMap() const;
+
+protected:
+    virtual Type typeImpl() const override final;
+    virtual const ValueNamesMap& getValueNamesMapImpl() const = 0;
+};
+
+using EnumFieldPtr = std::shared_ptr<EnumField>;
 
 } // namespace cc_plugin
 

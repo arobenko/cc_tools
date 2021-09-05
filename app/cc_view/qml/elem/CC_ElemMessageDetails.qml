@@ -35,6 +35,7 @@ ColumnLayout {
         qmlMessage: root.qmlMessage
         readOnly: root.readOnly
         Layout.fillHeight: true
+        Layout.fillWidth: true
     }
 
     // Item {
