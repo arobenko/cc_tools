@@ -8,6 +8,6 @@ Label {
     text: "OPTIONAL"
 
     property CC_QmlMessage qmlMessage
+    property CC_QmlField qmlField
     property bool readOnly: false
-    property int fieldIdx: 0
 }

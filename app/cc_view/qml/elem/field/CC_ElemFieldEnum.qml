@@ -7,8 +7,8 @@ Item {
     id: root
 
     property CC_QmlMessage qmlMessage
+    property CC_QmlField qmlField
     property bool readOnly: false
-    property int fieldIdx: 0
 
     height: 40
 

@@ -18,6 +18,17 @@ QmlMessage::QmlMessage(QObject* p) :
 
 QmlMessage::~QmlMessage() = default;
 
+QmlMessage::FieldPtr QmlMessage::field(int idx)
+{
+    if (!m_Msg) {
+        return FieldPtr();
+    }
+
+    assert(0 <= idx);
+    auto& fields = m_Msg->fields();
+    assert(static_cast<unsigned>(idx) < fields.size());
+    return fields[idx];
+}
 
 void QmlMessage::msgUpdated(MessagePtr value)
 {

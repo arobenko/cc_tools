@@ -20,9 +20,15 @@ ListView {
         anchors.left: parent.left
         anchors.right: parent.right
 
+        CC_QmlField {
+            id: qmlField
+            msg: qmlMessage.msg
+            idx: index
+        }
+
         onLoaded: {
             elem.item.qmlMessage = root.qmlMessage
-            elem.item.fieldIdx = index
+            elem.item.qmlField = qmlField
             elem.item.readOnly = Qt.binding(function() { return root.readOnly; });
         }     
     }
