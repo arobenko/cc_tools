@@ -19,7 +19,7 @@ Item {
 
         Label {
             id: nameLabel
-            text: "ENUM:"
+            text: (0 < enumField.name.length) ? enumField.name + ':' : ""
         }
 
         ComboBox {
@@ -58,6 +58,12 @@ Item {
         Item {
             Layout.fillWidth: true
         }
+    }
+
+    CC_QmlEnumField {
+        id: enumField
+        msg: root.qmlMessage.msg
+        field: root.qmlField.field
     }
 
 }

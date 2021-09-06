@@ -106,3 +106,4 @@ using EnumFieldPtr = std::shared_ptr<EnumField>;
 }  // namespace cc_tools
 
 Q_DECLARE_METATYPE(cc_tools::cc_plugin::FieldPtr);
+Q_DECLARE_METATYPE(cc_tools::cc_plugin::EnumFieldPtr);

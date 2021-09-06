@@ -4,6 +4,7 @@ set (name "cc_view")
 set (src
     src/model/AvailableMessagesListModel.cpp
     src/model/MessageFieldsListModel.cpp
+    src/qml/QmlEnumField.cpp
     src/qml/QmlField.cpp
     src/qml/QmlMessage.cpp
     src/AppMgr.cpp

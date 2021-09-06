@@ -7,6 +7,7 @@
 #include "model/AvailableMessagesListModel.h"
 #include "model/MessageFieldsListModel.h"
 
+#include "qml/QmlEnumField.h"
 #include "qml/QmlField.h"
 #include "qml/QmlMessage.h"
 
@@ -66,6 +67,7 @@ void qmlRegisterTypes()
     qmlRegisterType<cc_tools::cc_view::AvailableMessagesListModel>("CC", 1, 0, "CC_AvailableMessagesListModel");
     qmlRegisterType<cc_tools::cc_view::MessageFieldsListModel>("CC", 1, 0, "CC_MessageFieldsListModel");
     qmlRegisterType<cc_tools::cc_view::MessageCreator>("CC", 1, 0, "CC_MessageCreator");
+    qmlRegisterType<cc_tools::cc_view::QmlEnumField>("CC", 1, 0, "CC_QmlEnumField");
     qmlRegisterType<cc_tools::cc_view::QmlField>("CC", 1, 0, "CC_QmlField");
     qmlRegisterType<cc_tools::cc_view::QmlMessage>("CC", 1, 0, "CC_QmlMessage");
 }
