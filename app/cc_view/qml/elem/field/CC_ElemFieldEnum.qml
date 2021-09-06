@@ -19,10 +19,12 @@ Item {
 
         Label {
             id: nameLabel
-            text: (0 < enumField.name.length) ? enumField.name + ':' : ""
+            text: (0 < qmlEnumField.name.length) ? qmlEnumField.name + ':' : ""
         }
 
         ComboBox {
+            model: enumModel
+            textRole: "dataName"
         }
 
         Item {
@@ -61,9 +63,14 @@ Item {
     }
 
     CC_QmlEnumField {
-        id: enumField
+        id: qmlEnumField
         msg: root.qmlMessage.msg
         field: root.qmlField.field
+    }
+
+    CC_EnumValuesModel {
+        id: enumModel
+        enumField: qmlEnumField.enumField
     }
 
 }

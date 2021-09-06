@@ -5,6 +5,7 @@
 #include "cc_tools/cc_plugin/PluginIntegration.h"
 
 #include "model/AvailableMessagesListModel.h"
+#include "model/EnumValuesModel.h"
 #include "model/MessageFieldsListModel.h"
 
 #include "qml/QmlEnumField.h"
@@ -55,6 +56,7 @@ void metaTypesRegisterAll()
     qRegisterMetaType<cc_tools::cc_plugin::Message::MessageIdType>("MessageIdType");
     qRegisterMetaType<cc_tools::cc_plugin::MessagePtr>("MessagePtr");
     qRegisterMetaType<cc_tools::cc_plugin::FieldPtr>("FieldPtr");
+    qRegisterMetaType<cc_tools::cc_plugin::EnumFieldPtr>("EnumFieldPtr");
 }
 
 void qmlRegisterTypes()
@@ -65,6 +67,7 @@ void qmlRegisterTypes()
 
     qmlRegisterType<cc_tools::cc_view::PluginListModel>("CC", 1, 0, "CC_PluginListModel");
     qmlRegisterType<cc_tools::cc_view::AvailableMessagesListModel>("CC", 1, 0, "CC_AvailableMessagesListModel");
+    qmlRegisterType<cc_tools::cc_view::EnumValuesModel>("CC", 1, 0, "CC_EnumValuesModel");
     qmlRegisterType<cc_tools::cc_view::MessageFieldsListModel>("CC", 1, 0, "CC_MessageFieldsListModel");
     qmlRegisterType<cc_tools::cc_view::MessageCreator>("CC", 1, 0, "CC_MessageCreator");
     qmlRegisterType<cc_tools::cc_view::QmlEnumField>("CC", 1, 0, "CC_QmlEnumField");
