@@ -3,6 +3,8 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import CC 1.0
 
+import "qrc:/qml/basic"
+
 Item {
     id: root
 
@@ -29,7 +31,7 @@ Item {
             currentIndex: enumModel.currentIndex
 
             onCurrentIndexChanged: {
-                if (!readOnly) {
+                if (!root.readOnly) {
                     enumModel.currentIndex = currentIndex;
                 }
                 currentIndex = Qt.binding(function() { return enumModel.currentIndex; })
@@ -62,8 +64,15 @@ Item {
             text: "0x"
         }
 
-        TextField {
-            
+        CC_BasicSerValueTextField {
+            id: rawValue
+            text: qmlEnumField.serStr
+            readOnly: root.readOnly
+
+            onTextChanged: {
+                qmlEnumField.serStr = text;
+                text = Qt.binding(function() { return qmlEnumField.serStr; })
+            }
         }
 
         Item {

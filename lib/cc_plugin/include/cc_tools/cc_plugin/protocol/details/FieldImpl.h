@@ -60,6 +60,40 @@ protected:
         static const QString Str(m_field.name());
         return Str;
     }
+
+    virtual QByteArray getSerializedImpl() const override
+    {
+        QByteArray result;
+        result.resize(static_cast<int>(m_field.length()));
+        assert(!result.isEmpty());
+        auto writeIter = result.begin();
+        auto es = m_field.write(writeIter, result.size());
+        assert(es == comms::ErrorStatus::Success);
+        static_cast<void>(es);
+        return result;
+    }
+
+    virtual void setSerializedImpl(const QByteArray& data) override
+    {
+        auto readIter = data.begin();
+        auto es = m_field.read(readIter, data.size());
+        static_cast<void>(es);
+    }
+
+    virtual void adjustSerializedLengthImpl(QByteArray& data) const override
+    {
+        static const int MaxCount = 256;
+        for (auto count = 0; count < MaxCount; ++count) {
+            TField fieldTmp;
+            auto readIter = data.begin();
+            auto es = fieldTmp.read(readIter, data.size());
+            if (es != comms::ErrorStatus::NotEnoughData) {
+                return;
+            }
+
+            data.resize(data.size() + 1);
+        }
+    }
     
 private:
     TField& m_field;

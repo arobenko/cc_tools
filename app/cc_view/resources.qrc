@@ -7,6 +7,7 @@
         <file>image/plugin_select.png</file>
         <file>image/save_as.png</file>
         <file>qml/basic/CC_BasicHorSplitter.qml</file>
+        <file>qml/basic/CC_BasicSerValueTextField.qml</file>
         <file>qml/basic/CC_BasicToolButton.qml</file>
         <file>qml/basic/CC_BasicTooltip.qml</file>
         <file>qml/elem/field/CC_ElemFieldBitfield.qml</file>

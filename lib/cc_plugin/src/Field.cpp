@@ -43,6 +43,40 @@ Field::Type Field::type() const
     return typeImpl();
 }
 
+QString Field::getSerialized() const
+{
+    QString result;
+    auto data = getSerializedImpl();
+    for (auto byte : data) {
+        auto byteStr = QString("%1").arg(static_cast<unsigned>(static_cast<std::uint8_t>(byte)), 2, 16, QChar('0'));
+        result.append(byteStr);
+    }
+
+    return result;
+}
+
+void Field::setSerialized(const QString& str)
+{
+    auto strTmp = str;
+    if ((strTmp.size() % 2) != 0) {
+        strTmp.append('0');
+    }
+
+    QByteArray data;
+    for (auto idx = 0; idx < strTmp.size(); idx += 2) {
+        auto byteStr = strTmp.mid(idx, 2);
+        data.append(static_cast<char>(byteStr.toUInt(nullptr, 16)));
+    }
+
+    adjustSerializedLengthImpl(data);
+    auto prevSer = getSerialized();
+    setSerializedImpl(data);
+
+    if (getSerialized() != prevSer) {
+        reportFieldUpdated();
+    }
+}
+
 void Field::reportFieldUpdated()
 {
     emit sigFieldUpdated();

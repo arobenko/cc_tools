@@ -168,9 +168,20 @@ void EnumValuesModel::currentIndexChanged(int value)
         return;
     }
 
-    if (m_EnumField && (0 <= value)) {
-        m_EnumField->setValue(getValueOfInternal(value));
+    if ((!m_EnumField) || (value < 0)) {
+        return;
     }
+
+    if (value != m_unknownValueIdx) {
+        m_EnumField->setValue(getValueOfInternal(value));
+        return;
+    }
+
+    if (calcCurrentIndex() == value) {
+        return;
+    }
+        
+    m_EnumField->setValue(getValueOfInternal(value));
 }
 
 void EnumValuesModel::fieldUpdated()

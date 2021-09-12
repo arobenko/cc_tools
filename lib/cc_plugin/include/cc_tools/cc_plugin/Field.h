@@ -23,6 +23,7 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
+#include <QtCore/QByteArray>
 
 #include "cc_tools/cc_plugin/Api.h"
 
@@ -64,12 +65,18 @@ public:
 
     Type type() const;
 
+    QString getSerialized() const;
+    void setSerialized(const QString& str);
+
 signals:
     void sigFieldUpdated();    
 
 protected:
     virtual const QString& nameImpl() const = 0;    
     virtual Type typeImpl() const = 0;
+    virtual QByteArray getSerializedImpl() const = 0; 
+    virtual void setSerializedImpl(const QByteArray& data) = 0;
+    virtual void adjustSerializedLengthImpl(QByteArray& data) const = 0;
 
     void reportFieldUpdated();
 };
@@ -108,7 +115,7 @@ protected:
     virtual ValueType minAllowedValueImpl() const = 0;
     virtual ValueType maxAllowedValueImpl() const = 0;
     virtual ValueType getValueImpl() const = 0;
-    virtual void setValueImpl(ValueType value) = 0;    
+    virtual void setValueImpl(ValueType value) = 0;   
 };
 
 using EnumFieldPtr = std::shared_ptr<EnumField>;
