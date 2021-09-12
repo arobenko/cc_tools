@@ -1,6 +1,7 @@
 #include <QtWidgets/QApplication>
 #include <QtGui/QIcon>
 #include <QQmlApplicationEngine>
+#include <QQuickStyle>
 
 #include "cc_tools/cc_plugin/PluginIntegration.h"
 
@@ -81,12 +82,12 @@ void qmlRegisterTypes()
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     QApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/image/app_icon.png"));
 
     metaTypesRegisterAll();
     qmlRegisterTypes();
+    //QQuickStyle::setStyle("Breeze");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/qml/main.qml"));

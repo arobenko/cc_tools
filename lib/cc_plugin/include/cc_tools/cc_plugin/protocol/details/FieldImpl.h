@@ -49,6 +49,11 @@ public:
         return m_field;
     }
 
+    const TField& field() const
+    {
+        return m_field;
+    }
+
 protected:
     virtual const QString& nameImpl() const override
     {

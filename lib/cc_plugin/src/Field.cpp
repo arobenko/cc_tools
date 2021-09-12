@@ -62,6 +62,31 @@ const EnumField::ValueNamesMap& EnumField::getValueNamesMap() const
     return getValueNamesMapImpl();
 }
 
+EnumField::ValueType EnumField::minAllowedValue() const
+{
+    return minAllowedValueImpl();
+}
+
+EnumField::ValueType EnumField::maxAllowedValue() const
+{
+    return maxAllowedValueImpl();
+}
+
+EnumField::ValueType EnumField::getValue() const
+{
+    return getValueImpl();
+}
+
+void EnumField::setValue(ValueType value)
+{
+    if (getValue() == value) {
+        return;
+    }
+
+    setValueImpl(value);
+    reportFieldUpdated();
+}
+
 EnumField::Type EnumField::typeImpl() const
 {
     return Base::Type_Enum;

@@ -94,9 +94,21 @@ public:
 
     const ValueNamesMap& getValueNamesMap() const;
 
+    ValueType minAllowedValue() const;
+
+    ValueType maxAllowedValue() const;
+
+    ValueType getValue() const;
+
+    void setValue(ValueType value);
+
 protected:
     virtual Type typeImpl() const override final;
     virtual const ValueNamesMap& getValueNamesMapImpl() const = 0;
+    virtual ValueType minAllowedValueImpl() const = 0;
+    virtual ValueType maxAllowedValueImpl() const = 0;
+    virtual ValueType getValueImpl() const = 0;
+    virtual void setValueImpl(ValueType value) = 0;    
 };
 
 using EnumFieldPtr = std::shared_ptr<EnumField>;

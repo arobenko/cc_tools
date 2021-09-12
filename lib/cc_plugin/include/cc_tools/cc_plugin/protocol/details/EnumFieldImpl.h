@@ -19,6 +19,7 @@
 #pragma once
 
 #include <algorithm>
+#include <limits>
 
 #include "FieldImpl.h"
 
@@ -41,7 +42,10 @@ class EnumFieldImpl : public FieldImpl<TField, cc_tools::cc_plugin::EnumField>
 {
     using Base = FieldImpl<TField, cc_tools::cc_plugin::EnumField>;
 public:    
+    using FieldValueType = typename TField::ValueType;
+    using ValueType = typename Base::ValueType;
     using ValueNamesMap = typename Base::ValueNamesMap;
+    using UnderlyingType = typename std::underlying_type<typename TField::ValueType>::type;
 
     explicit EnumFieldImpl(TField& field) : 
         Base(field)
@@ -56,6 +60,26 @@ protected:
         static const ValueNamesMap Map = createValueNamesMapInternal();
         return Map;
     }
+
+    virtual ValueType minAllowedValueImpl() const override final
+    {
+        return static_cast<ValueType>(std::numeric_limits<UnderlyingType>::min());
+    }
+
+    virtual ValueType maxAllowedValueImpl() const override final
+    {
+        return static_cast<ValueType>(std::numeric_limits<UnderlyingType>::max());
+    }
+
+    virtual ValueType getValueImpl() const override final
+    {
+        return static_cast<ValueType>(Base::field().value());
+    }
+
+    virtual void setValueImpl(ValueType value) override final
+    {
+        Base::field().value() = static_cast<FieldValueType>(value);
+    }    
 
 private:
     struct DirectTag {};

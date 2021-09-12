@@ -23,8 +23,17 @@ Item {
         }
 
         ComboBox {
+            id: comboBox
             model: enumModel
             textRole: "dataName"
+            currentIndex: enumModel.currentIndex
+
+            onCurrentIndexChanged: {
+                if (!readOnly) {
+                    enumModel.currentIndex = currentIndex;
+                }
+                currentIndex = Qt.binding(function() { return enumModel.currentIndex; })
+            }
         }
 
         Item {
@@ -72,5 +81,4 @@ Item {
         id: enumModel
         enumField: qmlEnumField.enumField
     }
-
 }

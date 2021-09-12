@@ -1,4 +1,4 @@
-find_package(Qt5 ${CC_MIN_QT_VERSION} COMPONENTS Quick Widgets REQUIRED)
+find_package(Qt5 ${CC_MIN_QT_VERSION} COMPONENTS Quick QuickControls2 Widgets REQUIRED)
 
 set (name "cc_view")
 set (src
@@ -21,7 +21,7 @@ add_executable (${name} ${src})
 target_compile_definitions(${name}
     PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
-target_link_libraries(${name} PRIVATE cc::app cc::plugin Qt5::Quick Qt5::Widgets Qt5::Core)
+target_link_libraries(${name} PRIVATE cc::app cc::plugin Qt5::QuickControls2 Qt5::Quick Qt5::Widgets Qt5::Core)
 target_include_directories(${name} PRIVATE src)
 
 install(
