@@ -8,6 +8,7 @@ set (src
     src/qml/QmlEnumField.cpp
     src/qml/QmlField.cpp
     src/qml/QmlMessage.cpp
+    src/qml/QmlSetField.cpp
     src/AppMgr.cpp
     src/GuiState.cpp
     src/main.cpp

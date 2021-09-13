@@ -10,4 +10,11 @@ Label {
     property CC_QmlMessage qmlMessage
     property CC_QmlField qmlField
     property bool readOnly: false
+
+    CC_QmlSetField {
+        id: qmlSetField
+        msg: root.qmlMessage.msg
+        field: root.qmlField.field
+    }
+
 }

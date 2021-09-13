@@ -155,3 +155,4 @@ using SetFieldPtr = std::shared_ptr<SetField>;
 
 Q_DECLARE_METATYPE(cc_tools::cc_plugin::FieldPtr);
 Q_DECLARE_METATYPE(cc_tools::cc_plugin::EnumFieldPtr);
+Q_DECLARE_METATYPE(cc_tools::cc_plugin::SetFieldPtr);

@@ -12,6 +12,7 @@
 #include "qml/QmlEnumField.h"
 #include "qml/QmlField.h"
 #include "qml/QmlMessage.h"
+#include "qml/QmlSetField.h"
 
 #include "GuiState.h"
 #include "AppMgr.h"
@@ -58,6 +59,7 @@ void metaTypesRegisterAll()
     qRegisterMetaType<cc_tools::cc_plugin::MessagePtr>("MessagePtr");
     qRegisterMetaType<cc_tools::cc_plugin::FieldPtr>("FieldPtr");
     qRegisterMetaType<cc_tools::cc_plugin::EnumFieldPtr>("EnumFieldPtr");
+    qRegisterMetaType<cc_tools::cc_plugin::SetFieldPtr>("SetFieldPtr");
 }
 
 void qmlRegisterTypes()
@@ -74,6 +76,7 @@ void qmlRegisterTypes()
     qmlRegisterType<cc_tools::cc_view::QmlEnumField>("CC", 1, 0, "CC_QmlEnumField");
     qmlRegisterType<cc_tools::cc_view::QmlField>("CC", 1, 0, "CC_QmlField");
     qmlRegisterType<cc_tools::cc_view::QmlMessage>("CC", 1, 0, "CC_QmlMessage");
+    qmlRegisterType<cc_tools::cc_view::QmlSetField>("CC", 1, 0, "CC_QmlSetField");
 }
 
 } // namespace 
