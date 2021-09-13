@@ -120,6 +120,35 @@ protected:
 
 using EnumFieldPtr = std::shared_ptr<EnumField>;
 
+class CC_PLUGIN_API SetField : public Field
+{
+    Q_OBJECT
+    using Base = Field;
+public:
+    using BitNameInfo = std::pair<unsigned, QString>;
+    using BitNamesMap = std::vector<BitNameInfo>;
+
+
+    /// @brief Constructor
+    explicit SetField(QObject* p = nullptr);
+
+    /// @brief Destructor
+    virtual ~SetField() noexcept;
+
+    const BitNamesMap& getBitNamesMap() const;
+
+    bool getBitValue(unsigned idx) const;
+    void setBitValue(unsigned idx, bool value);
+
+protected:
+    virtual Type typeImpl() const override final;
+    virtual const BitNamesMap& getBitNamesMapImpl() const = 0;
+    virtual bool getBitValueImpl(unsigned idx) const = 0;
+    virtual void setBitValueImpl(unsigned idx, bool value) = 0;
+};
+
+using SetFieldPtr = std::shared_ptr<SetField>;
+
 } // namespace cc_plugin
 
 }  // namespace cc_tools

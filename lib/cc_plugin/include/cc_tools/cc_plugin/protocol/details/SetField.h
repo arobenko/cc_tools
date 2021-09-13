@@ -33,11 +33,13 @@ namespace details
 {
 
 template <typename TField>
-class SetField : public FieldImpl<TField>
+class SetField : public FieldImpl<TField, cc_tools::cc_plugin::SetField>
 {
-    using Base = FieldImpl<TField>;
+    using Base = FieldImpl<TField, cc_tools::cc_plugin::SetField>;
 public:    
-    using Type = typename Base::Type;
+    using FieldValueType = typename TField::ValueType;
+    using BitNameInfo = typename Base::BitNameInfo;
+    using BitNamesMap = typename Base::BitNamesMap;
 
     explicit SetField(TField& field) : 
         Base(field)
@@ -47,9 +49,38 @@ public:
     ~SetField() = default;
 
 protected:
-    virtual Type typeImpl() const override final
+    virtual const BitNamesMap& getBitNamesMapImpl() const override final
     {
-        return Base::Type_Set;
+        static const BitNamesMap Map = createBitNamesMapInternal();
+        return Map;
+    }
+
+    virtual bool getBitValueImpl(unsigned idx) const override final
+    {
+        return Base::field().getBitValue(idx);
+    }
+
+    virtual void setBitValueImpl(unsigned idx, bool value) override final
+    {
+        Base::field().setBitValue(idx, value);
+    }
+
+
+private:
+    BitNamesMap createBitNamesMapInternal() const
+    {
+        static const auto TotalBits = std::numeric_limits<FieldValueType>::digits;
+        BitNamesMap result;
+        result.reserve(TotalBits);
+        for (unsigned idx = 0; idx < TotalBits; ++idx) {
+            auto* name = TField::bitName(static_cast<typename TField::BitIdx>(idx));
+            if (name == nullptr) {
+                continue;
+            }
+
+            result.push_back(std::make_pair(idx, name));
+        }
+        return result;
     }
 };
 

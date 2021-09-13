@@ -126,6 +126,40 @@ EnumField::Type EnumField::typeImpl() const
     return Base::Type_Enum;
 }
 
+// ------------------------------------------
+
+SetField::SetField(QObject* p) : 
+    Base(p)
+{
+}
+
+SetField::~SetField() noexcept = default;
+
+const SetField::BitNamesMap& SetField::getBitNamesMap() const
+{
+    return getBitNamesMapImpl();
+}
+
+bool SetField::getBitValue(unsigned idx) const
+{
+    return getBitValueImpl(idx);
+}
+
+void SetField::setBitValue(unsigned idx, bool value)
+{
+    if (getBitValue(idx) == value) {
+        return;
+    }
+
+    setBitValueImpl(idx, value);
+    reportFieldUpdated();
+}
+
+SetField::Type SetField::typeImpl() const
+{
+    return Base::Type_Set;
+}
+
 }  // namespace cc_plugin
 
 }  // namespace cc_tools
