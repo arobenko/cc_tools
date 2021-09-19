@@ -13,11 +13,17 @@ Item {
 
     height: leftSide.height
 
+    CC_BasicFieldFrame {
+        anchors.fill: parent
+    }
+
     ColumnLayout {
         id: leftSide
         anchors.left: parent.left
         anchors.right: sep.left
         anchors.top: parent.top
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
 
         RowLayout {
             Layout.minimumHeight: 40
@@ -64,6 +70,10 @@ Item {
                 }
             }
         }
+
+        Item {
+            Layout.minimumHeight: 3
+        }
     }
 
     Rectangle {
@@ -82,6 +92,8 @@ Item {
         anchors.left: sep.right
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
         height: 40
         
         Label {

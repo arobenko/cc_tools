@@ -13,10 +13,16 @@ Item {
 
     height: 40
 
+    CC_BasicFieldFrame {
+        anchors.fill: parent
+    }
+
     RowLayout {
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: sep.left
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
 
         Label {
             id: nameLabel
@@ -58,6 +64,8 @@ Item {
         anchors.left: sep.right
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
         
         Label {
             text: "0x"

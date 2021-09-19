@@ -6,6 +6,7 @@
         <file>image/folder.png</file>
         <file>image/plugin_select.png</file>
         <file>image/save_as.png</file>
+        <file>qml/basic/CC_BasicFieldFrame.qml</file>
         <file>qml/basic/CC_BasicHorSplitter.qml</file>
         <file>qml/basic/CC_BasicSerValueTextField.qml</file>
         <file>qml/basic/CC_BasicToolButton.qml</file>
