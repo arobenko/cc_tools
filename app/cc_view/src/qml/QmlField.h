@@ -30,6 +30,7 @@ class QmlField : public QObject
 public:
     using MessagePtr = cc_tools::cc_plugin::MessagePtr;
     using FieldPtr = cc_tools::cc_plugin::FieldPtr;
+    using Field = cc_tools::cc_plugin::Field;
 
     explicit QmlField(QObject* p = nullptr);
     ~QmlField();
@@ -55,6 +56,8 @@ private slots:
 private:
     void resetStatus();
     void updateStatus();
+
+    // void setFieldInternal(FieldPtr value);
 };
 
 } // namespace cc_view

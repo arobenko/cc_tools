@@ -22,7 +22,6 @@ class QmlSetField : public QObject
     using Base = QObject;
 
     // Config
-    Q_PROPERTY(MessagePtr msg READ getMsg WRITE setMsg NOTIFY sigMsgChanged)
     Q_PROPERTY(FieldPtr field READ getField WRITE setField NOTIFY sigFieldChanged)
 
     // Status
@@ -44,7 +43,6 @@ public:
     ~QmlSetField();
 
     // Config members
-    CC_MEMBER(MessagePtr, Msg)
     CC_MEMBER(FieldPtr, Field)
 
     // Status members
@@ -55,14 +53,12 @@ public:
     CC_MEMBER(QString, SerStr)
 
 signals:
-    void sigMsgChanged(MessagePtr value);
     void sigFieldChanged(FieldPtr value);
     void sigSetFieldChanged(FieldPtr value);
     void sigNameChanged(const QString& value);
     void sigSerStrChanged(const QString& value);
 
 private slots:
-    void msgChanged(MessagePtr value);    
     void fieldChanged(FieldPtr value);  
     void serStrChanged(const QString& value);  
     void updateStatus();

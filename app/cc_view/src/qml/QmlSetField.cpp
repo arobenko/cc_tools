@@ -12,10 +12,6 @@ QmlSetField::QmlSetField(QObject* p) :
     Base(p)
 {
     connect(
-        this, &QmlSetField::sigMsgChanged,
-        this, &QmlSetField::msgChanged);
-
-    connect(
         this, &QmlSetField::sigFieldChanged,
         this, &QmlSetField::fieldChanged);  
 
@@ -26,28 +22,27 @@ QmlSetField::QmlSetField(QObject* p) :
 
 QmlSetField::~QmlSetField() = default;
 
-void QmlSetField::msgChanged(MessagePtr value)
-{
-    if (value) {
-        connect(
-            value.get(), &Message::sigMessageUpdated,
-            this, &QmlSetField::updateStatus);
-    }
-
-    if ((!value) || (!m_Field)) {
-        resetStatus();
-        return;
-    }
-
-    updateStatus();
-}
-
 void QmlSetField::fieldChanged(FieldPtr value)
 {
-    if ((!m_Msg) || (!value)) {
+    if (!value) {
         resetStatus();
         return;
     }
+
+    connect(
+        value.get(), &Field::sigFieldUpdated,
+        this,
+        [this]()
+        {
+            auto* sndr = sender();
+            assert(sndr != nullptr);
+            if (sndr != m_Field.get()) {
+                disconnect(sndr, nullptr, this, nullptr);
+                return;
+            }
+
+            updateStatus();
+        });
 
     updateStatus();
 }

@@ -63,7 +63,7 @@ QVariant MessageFieldsListModel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> MessageFieldsListModel::roleNames() const
 {
     auto names = Base::roleNames();
-    names[Role_FieldQml] = "fieldQml";
+    names[Role_FieldQml] = "dataFieldQml";
     return names;
 }
 

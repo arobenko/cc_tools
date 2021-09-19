@@ -26,6 +26,24 @@ namespace cc_tools
 namespace cc_plugin
 {
 
+namespace 
+{
+
+void forceUpdateReportForFields(Message& msg, Field& origField)
+{
+    auto& allFields = msg.fields();
+    for (auto& f : allFields) {
+        if (f.get() == &origField) {
+            continue;
+        }
+
+        f->reportFieldUpdated();
+    }    
+}
+
+} // namespace 
+    
+
 Message::Message(QObject* p) : 
     Base(p)
 {
@@ -42,7 +60,12 @@ void Message::init()
             this,
             [this]() 
             {
-                refresh();
+                bool updated = refresh();
+                if (updated) {
+                    auto* sndr = qobject_cast<Field*>(sender());
+                    assert(sndr != nullptr);
+                    forceUpdateReportForFields(*this, *sndr);
+                }
                 emit sigMessageUpdated();
             });
     }

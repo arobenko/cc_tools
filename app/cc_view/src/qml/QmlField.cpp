@@ -57,6 +57,15 @@ void QmlField::updateStatus()
     setField(fields[m_Idx]);
     // setName(m_Field->name());
 }
+
+// void QmlField::setFieldInternal(FieldPtr value)
+// {
+//     if (m_Field) {
+//         disconnect(m_Field.get(), nullptr, this, nullptr);
+//     }
+
+//     // TODO: connect signals
+// }
     
 } // namespace cc_view
 

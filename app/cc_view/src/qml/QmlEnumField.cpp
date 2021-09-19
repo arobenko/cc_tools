@@ -12,10 +12,6 @@ QmlEnumField::QmlEnumField(QObject* p) :
     Base(p)
 {
     connect(
-        this, &QmlEnumField::sigMsgChanged,
-        this, &QmlEnumField::msgChanged);
-
-    connect(
         this, &QmlEnumField::sigFieldChanged,
         this, &QmlEnumField::fieldChanged);  
 
@@ -26,28 +22,27 @@ QmlEnumField::QmlEnumField(QObject* p) :
 
 QmlEnumField::~QmlEnumField() = default;
 
-void QmlEnumField::msgChanged(MessagePtr value)
-{
-    if (value) {
-        connect(
-            value.get(), &Message::sigMessageUpdated,
-            this, &QmlEnumField::updateStatus);
-    }
-
-    if ((!value) || (!m_Field)) {
-        resetStatus();
-        return;
-    }
-
-    updateStatus();
-}
-
 void QmlEnumField::fieldChanged(FieldPtr value)
 {
-    if ((!m_Msg) || (!value)) {
+    if (!value) {
         resetStatus();
         return;
     }
+
+    connect(
+        value.get(), &Field::sigFieldUpdated,
+        this,
+        [this]()
+        {
+            auto* sndr = sender();
+            assert(sndr != nullptr);
+            if (sndr != m_Field.get()) {
+                disconnect(sndr, nullptr, this, nullptr);
+                return;
+            }
+
+            updateStatus();
+        });
 
     updateStatus();
 }

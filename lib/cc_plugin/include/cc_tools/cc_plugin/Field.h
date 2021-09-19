@@ -68,6 +68,8 @@ public:
     QString getSerialized() const;
     void setSerialized(const QString& str);
 
+    void reportFieldUpdated();
+
 signals:
     void sigFieldUpdated();    
 
@@ -77,8 +79,6 @@ protected:
     virtual QByteArray getSerializedImpl() const = 0; 
     virtual void setSerializedImpl(const QByteArray& data) = 0;
     virtual void adjustSerializedLengthImpl(QByteArray& data) const = 0;
-
-    void reportFieldUpdated();
 };
 
 using FieldPtr = std::shared_ptr<Field>;

@@ -8,7 +8,6 @@ import "qrc:/qml/basic"
 Item {
     id: root
 
-    property CC_QmlMessage qmlMessage
     property CC_QmlField qmlField
     property bool readOnly: false
 
@@ -107,7 +106,6 @@ Item {
 
     CC_QmlSetField {
         id: qmlSetField
-        msg: root.qmlMessage.msg
         field: root.qmlField.field
     }
 

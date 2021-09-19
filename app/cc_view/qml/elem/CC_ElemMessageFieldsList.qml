@@ -9,16 +9,20 @@ ListView {
     property CC_QmlMessage qmlMessage
     property bool readOnly: false
 
+    spacing: 3
+
     model: CC_MessageFieldsListModel {
         msg: qmlMessage.msg
     }
 
     delegate: Loader {
         id: elem
-        source: fieldQml
+        source: dataFieldQml
         active: source != ""
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
 
         CC_QmlField {
             id: qmlField
@@ -26,10 +30,17 @@ ListView {
             idx: index
         }
 
+        // Rectangle {
+        //     border.color: "black"
+        //     border.width: 1
+        //     color: "transparent"
+        //     anchors.fill: parent
+        //     radius: 5
+        // }
+
         onLoaded: {
-            elem.item.qmlMessage = root.qmlMessage
             elem.item.qmlField = qmlField
             elem.item.readOnly = Qt.binding(function() { return root.readOnly; });
-        }     
+        }    
     }
 }
