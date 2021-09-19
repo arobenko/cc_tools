@@ -65,11 +65,12 @@ protected:
     {
         QByteArray result;
         result.resize(static_cast<int>(m_field.length()));
-        assert(!result.isEmpty());
-        auto writeIter = result.begin();
-        auto es = m_field.write(writeIter, result.size());
-        assert(es == comms::ErrorStatus::Success);
-        static_cast<void>(es);
+        if (!result.isEmpty()) {
+            auto writeIter = result.begin();
+            auto es = m_field.write(writeIter, result.size());
+            assert(es == comms::ErrorStatus::Success);
+            static_cast<void>(es);
+        }
         return result;
     }
 
@@ -93,6 +94,11 @@ protected:
 
             data.resize(data.size() + 1);
         }
+    }
+
+    virtual bool validImpl() const
+    {
+        return m_field.valid();
     }
     
 private:

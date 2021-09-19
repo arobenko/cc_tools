@@ -70,6 +70,8 @@ public:
 
     void reportFieldUpdated();
 
+    bool valid() const;
+
 signals:
     void sigFieldUpdated();    
 
@@ -79,6 +81,7 @@ protected:
     virtual QByteArray getSerializedImpl() const = 0; 
     virtual void setSerializedImpl(const QByteArray& data) = 0;
     virtual void adjustSerializedLengthImpl(QByteArray& data) const = 0;
+    virtual bool validImpl() const = 0;
 };
 
 using FieldPtr = std::shared_ptr<Field>;

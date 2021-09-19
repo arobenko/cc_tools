@@ -19,6 +19,7 @@
 
 #include <cassert>
 #include <type_traits>
+#include <iostream>
 
 namespace cc_tools
 {
@@ -80,6 +81,11 @@ void Field::setSerialized(const QString& str)
 void Field::reportFieldUpdated()
 {
     emit sigFieldUpdated();
+}
+
+bool Field::valid() const
+{
+    return validImpl();
 }
 
 // ------------------------------------------

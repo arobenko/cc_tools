@@ -26,10 +26,6 @@ class QmlEnumField : public QObject
 
     // Status
     Q_PROPERTY(EnumFieldPtr enumField READ getEnumField NOTIFY sigEnumFieldChanged)
-    Q_PROPERTY(QString name READ getName NOTIFY sigNameChanged)
-
-    // Writable Status
-    Q_PROPERTY(QString serStr READ getSerStr WRITE setSerStr NOTIFY sigSerStrChanged)
 
 public:
     using Message = cc_tools::cc_plugin::Message;
@@ -47,27 +43,16 @@ public:
 
     // Status members
     CC_MEMBER(EnumFieldPtr, EnumField)
-    CC_MEMBER(QString, Name)
-
-    // Writable Status members
-    CC_MEMBER(QString, SerStr)
-
 signals:
     void sigFieldChanged(FieldPtr value);
     void sigEnumFieldChanged(FieldPtr value);
-    void sigNameChanged(const QString& value);
-    void sigSerStrChanged(const QString& value);
 
 private slots:
     void fieldChanged(FieldPtr value);  
-    void serStrChanged(const QString& value);  
     void updateStatus();
 
 private:
     void resetStatus();
-    void setSerStrInternal(const QString& value);
-
-    bool m_internalUpdate = false;
 };
 
 } // namespace cc_view

@@ -15,6 +15,7 @@ Item {
 
     CC_BasicFieldFrame {
         anchors.fill: parent
+        qmlField: root.qmlField
     }
 
     ColumnLayout {
@@ -28,9 +29,8 @@ Item {
         RowLayout {
             Layout.minimumHeight: 40
 
-            Label {
-                id: nameLabel
-                text: (0 < qmlSetField.name.length) ? qmlSetField.name + ':' : ""
+            CC_BasicFieldNameLabel {
+                qmlField: root.qmlField
             }
 
             Item {
@@ -88,32 +88,11 @@ Item {
         anchors.bottomMargin: 3
     }
 
-    RowLayout {
+    CC_BasicFieldSerValue {
         anchors.left: sep.right
         anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 5
-        anchors.rightMargin: 5
-        height: 40
-        
-        Label {
-            text: "0x"
-        }
-
-        CC_BasicSerValueTextField {
-            id: rawValue
-            text: qmlSetField.serStr
-            readOnly: root.readOnly
-
-            onTextChanged: {
-                qmlSetField.serStr = text;
-                text = Qt.binding(function() { return qmlSetField.serStr; })
-            }
-        }
-
-        Item {
-            Layout.fillWidth: true
-        }
+        readOnly: root.readOnly
+        qmlField: root.qmlField
     }
 
     CC_QmlSetField {

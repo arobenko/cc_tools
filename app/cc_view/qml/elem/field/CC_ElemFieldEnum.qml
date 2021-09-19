@@ -15,6 +15,7 @@ Item {
 
     CC_BasicFieldFrame {
         anchors.fill: parent
+        qmlField: root.qmlField
     }
 
     RowLayout {
@@ -24,9 +25,8 @@ Item {
         anchors.leftMargin: 5
         anchors.rightMargin: 5
 
-        Label {
-            id: nameLabel
-            text: (0 < qmlEnumField.name.length) ? qmlEnumField.name + ':' : ""
+        CC_BasicFieldNameLabel {
+            qmlField: root.qmlField
         }
 
         ComboBox {
@@ -60,31 +60,11 @@ Item {
         anchors.bottomMargin: 3
     }
 
-    RowLayout {
+    CC_BasicFieldSerValue {
         anchors.left: sep.right
         anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 5
-        anchors.rightMargin: 5
-        
-        Label {
-            text: "0x"
-        }
-
-        CC_BasicSerValueTextField {
-            id: rawValue
-            text: qmlEnumField.serStr
-            readOnly: root.readOnly
-
-            onTextChanged: {
-                qmlEnumField.serStr = text;
-                text = Qt.binding(function() { return qmlEnumField.serStr; })
-            }
-        }
-
-        Item {
-            Layout.fillWidth: true
-        }
+        readOnly: root.readOnly
+        qmlField: root.qmlField
     }
 
     CC_QmlEnumField {
