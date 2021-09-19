@@ -5,6 +5,7 @@ set (src
     src/model/AvailableMessagesListModel.cpp
     src/model/EnumValuesModel.cpp
     src/model/MessageFieldsListModel.cpp
+    src/model/SetBitsModel.cpp
     src/qml/QmlEnumField.cpp
     src/qml/QmlField.cpp
     src/qml/QmlMessage.cpp
